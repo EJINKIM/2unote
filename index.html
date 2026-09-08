@@ -1,0 +1,1383 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#6967B3">
+<title>TOYU Night Notice</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+  --night:#6866B1;
+  --night-deep:#57559B;
+  --night-soft:#7978C2;
+  --cream:#FFF4DA;
+  --cream2:#FFF9E9;
+  --pink:#F4A8C4;
+  --pink2:#FFD2DF;
+  --blue:#9CC5E5;
+  --blue2:#C8E0F2;
+  --mint:#BFE5D3;
+  --mint2:#DDF2E8;
+  --yellow:#F8D78D;
+  --yellow2:#FCE9B9;
+  --ink:#343850;
+  --muted:#737994;
+  --line:rgba(69,73,119,.16);
+  --shadow:0 20px 50px rgba(45,42,91,.18);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 12% 8%,rgba(255,255,255,.12),transparent 24%),
+    linear-gradient(180deg,#6D6BB7 0%,#6664AC 55%,#5C60A1 100%);
+  color:var(--ink);
+  font-family:"Noto Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+body:before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(circle,#FFF4DA 0 1.2px,transparent 1.4px),
+    radial-gradient(circle,#FFF4DA 0 1px,transparent 1.2px),
+    radial-gradient(circle,#F7C8D7 0 1.2px,transparent 1.5px);
+  background-size:173px 151px,211px 187px,263px 229px;
+  background-position:12px 22px,96px 66px,40px 120px;
+  opacity:.75;
+}
+.page{
+  position:relative;z-index:1;
+  width:min(1180px,calc(100% - 28px));
+  margin:28px auto 78px;
+  background:rgba(255,249,233,.96);
+  border:2px solid rgba(255,244,218,.78);
+  border-radius:24px;
+  padding:16px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.page:before{
+  content:"";
+  position:absolute;left:0;right:0;bottom:0;height:145px;
+  pointer-events:none;
+  opacity:.16;
+  background:
+    linear-gradient(90deg,
+      #4A4D84 0 4%,transparent 4% 6%,#4A4D84 6% 11%,transparent 11% 13%,
+      #4A4D84 13% 18%,transparent 18% 21%,#4A4D84 21% 27%,transparent 27% 29%,
+      #4A4D84 29% 36%,transparent 36% 39%,#4A4D84 39% 47%,transparent 47% 50%,
+      #4A4D84 50% 58%,transparent 58% 62%,#4A4D84 62% 69%,transparent 69% 72%,
+      #4A4D84 72% 79%,transparent 79% 83%,#4A4D84 83% 91%,transparent 91% 94%,
+      #4A4D84 94% 100%);
+  clip-path:polygon(0 45%,4% 45%,4% 25%,7% 25%,7% 55%,12% 55%,12% 38%,16% 38%,16% 62%,22% 62%,22% 26%,26% 26%,26% 52%,32% 52%,32% 18%,36% 18%,36% 57%,41% 57%,41% 33%,46% 33%,46% 65%,51% 65%,51% 24%,56% 24%,56% 55%,61% 55%,61% 40%,66% 40%,66% 61%,72% 61%,72% 28%,77% 28%,77% 52%,83% 52%,83% 37%,88% 37%,88% 58%,94% 58%,94% 22%,100% 22%,100% 100%,0 100%);
+}
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:4px 4px 14px;position:relative;z-index:2;
+}
+.brand{
+  display:flex;align-items:center;gap:9px;
+  color:#5A5E91;font-size:12px;font-weight:900;letter-spacing:.10em;
+}
+.brand-mark{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--night);color:var(--cream);
+  display:grid;place-items:center;
+  font-size:16px;font-weight:900;
+  box-shadow:0 7px 18px rgba(81,80,151,.22);
+}
+.top-actions{display:flex;gap:7px;flex-wrap:wrap}
+.small-btn{
+  border:1px solid #DDD9C9;background:#FFF9E9;color:#676B81;
+  border-radius:999px;padding:8px 11px;font-size:10px;font-weight:850;
+  transition:.15s ease;
+}
+.small-btn:hover{background:#fff;transform:translateY(-1px)}
+
+.hero{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:14px;
+  position:relative;z-index:2;
+}
+.hero-main,.hero-side{
+  border-radius:20px;min-height:320px;overflow:hidden;position:relative;
+}
+.hero-main{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.08),transparent 40%),
+    linear-gradient(145deg,#6F6DB8 0%,#6766B0 100%);
+  border:1px solid rgba(255,244,218,.28);
+  padding:28px 29px 24px;
+  color:var(--cream);
+}
+.hero-main:before{
+  content:"☾";
+  position:absolute;right:45px;top:22px;
+  font-size:72px;color:var(--pink);opacity:.95;
+}
+.hero-main:after{
+  content:"✦  ·  ✧  ·  ✦";
+  position:absolute;right:52px;bottom:42px;
+  font-size:16px;color:var(--cream);letter-spacing:11px;opacity:.8;
+}
+.kicker{
+  display:inline-flex;align-items:center;gap:5px;
+  border:1px solid rgba(255,244,218,.34);
+  background:rgba(255,255,255,.08);
+  color:var(--cream);
+  border-radius:999px;padding:7px 10px;
+  font-size:9px;font-weight:900;letter-spacing:.14em;
+}
+.hero h1{
+  margin:30px 0 16px;
+  font-family:"Noto Sans KR",sans-serif;
+  font-size:clamp(42px,6.4vw,73px);
+  line-height:1.02;letter-spacing:-.07em;
+  color:var(--cream);font-weight:900;
+  max-width:680px;
+}
+.hero h1 span{
+  display:block;
+  color:#FFF0C8;
+}
+.hero-copy{
+  max-width:660px;margin:0;
+  font-size:13px;line-height:1.82;
+  color:rgba(255,244,218,.92);
+}
+.hero-note{
+  margin-top:22px;display:inline-flex;align-items:center;gap:6px;
+  padding:8px 11px;border-radius:999px;
+  background:rgba(244,168,196,.18);
+  border:1px solid rgba(255,210,223,.26);
+  color:#FFE6EE;font-size:10px;font-weight:850;
+}
+.hero-side{
+  background:linear-gradient(155deg,#97BDDD 0%,#A7CAE5 58%,#F2B3CB 145%);
+  border:1px solid rgba(255,244,218,.45);
+  padding:21px;
+}
+.vending{
+  height:100%;
+  min-height:276px;
+  border-radius:16px;
+  border:3px solid rgba(72,79,127,.68);
+  background:#C8DFF0;
+  padding:13px;
+  box-shadow:
+    inset 0 0 0 5px rgba(255,255,255,.23),
+    0 10px 24px rgba(55,63,115,.12);
+}
+.vending-screen{
+  border:2px solid rgba(72,79,127,.52);
+  border-radius:12px;
+  background:var(--cream2);
+  padding:14px;
+}
+.side-title{
+  font-family:"Noto Sans KR",sans-serif;
+  font-size:23px;font-weight:900;
+  color:#6D709B;margin:0 0 12px;
+}
+.staff-box{
+  background:#FFF9E9;color:var(--ink);
+  border-radius:11px;padding:13px;
+  border:1px solid rgba(83,88,139,.14);
+}
+.staff-box label{
+  display:block;font-size:9px;font-weight:900;color:#7A8092;letter-spacing:.12em;margin-bottom:6px;
+}
+.staff-select{
+  width:100%;border:1px solid #DCDDE7;background:#fff;
+  border-radius:8px;padding:10px 11px;color:#565D74;
+  font-family:"Noto Sans KR",sans-serif;font-weight:800;
+}
+.staff-copy{font-size:10px;line-height:1.6;color:#7D8392;margin:8px 0 0}
+.personal-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}
+.personal-filter{
+  border:1px solid #DDDFE8;background:#fff;color:#6C7284;
+  border-radius:8px;padding:8px 7px;font-size:9px;font-weight:900;
+}
+.personal-filter.active{
+  background:#ECECFF;border-color:#CDCEFF;color:#6567AA;
+}
+.vending-lights{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px
+}
+.vending-lights i{
+  height:9px;border-radius:3px;background:var(--yellow)
+}
+.vending-lights i:nth-child(2){background:var(--pink)}
+.vending-lights i:nth-child(3){background:var(--blue)}
+.vending-lights i:nth-child(4){background:var(--mint)}
+.vending-lights i:nth-child(5){background:#B7B9FF}
+
+.status-band{
+  display:grid;grid-template-columns:1.2fr repeat(3,.7fr);gap:9px;
+  margin:13px 0;position:relative;z-index:2;
+}
+.stat{
+  background:#FFF9E9;border:1px solid #E4DEC9;border-radius:12px;
+  padding:14px 15px;min-height:86px;position:relative;overflow:hidden;
+}
+.stat:before{content:"";position:absolute;left:0;top:0;right:0;height:5px;background:#B7B9FF}
+.stat:nth-child(2):before{background:var(--pink)}
+.stat:nth-child(3):before{background:var(--blue)}
+.stat:nth-child(4):before{background:var(--mint)}
+.stat small{font-size:9px;color:#858998;font-weight:900}
+.stat b{display:block;margin-top:7px;font-size:23px;letter-spacing:-.04em}
+.stat.big b{font-size:17px;line-height:1.4}
+.progress{height:6px;background:#EEEDE6;border-radius:99px;overflow:hidden;margin-top:10px}
+.progress i{
+  display:block;height:100%;width:0;
+  background:linear-gradient(90deg,#9FA1FF,var(--blue),var(--mint),var(--pink));
+}
+
+.reminder-bar{
+  display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;
+  margin:11px 0;padding:12px 14px;border-radius:12px;
+  background:linear-gradient(90deg,#FFF7D8,#E4F6EC,#E8F4FC);
+  border:1px solid #E5E8E7;position:relative;z-index:2;
+}
+.reminder-icon{font-size:20px}
+.reminder-copy b{
+  display:block;font-size:13px;font-weight:900;color:#5A6072;margin-bottom:2px
+}
+.reminder-copy span{font-size:9px;color:#828894;line-height:1.5}
+.reminder-btn{
+  border:1px solid #E0E3EB;background:#fff;color:#697081;
+  border-radius:8px;padding:8px 10px;font-size:9px;font-weight:900
+}
+
+.toolbar{
+  background:rgba(255,249,233,.96);border:1px solid #E1DCCB;
+  border-radius:12px;padding:9px;position:sticky;top:8px;z-index:20;
+  box-shadow:0 8px 20px rgba(71,72,112,.06);
+}
+.toolbar-top{display:grid;grid-template-columns:minmax(240px,1fr) auto auto;gap:7px}
+.search{
+  display:flex;align-items:center;gap:8px;border:1px solid #DFDFE5;
+  border-radius:8px;background:#fff;padding:0 10px
+}
+.search input{border:0;outline:0;background:transparent;width:100%;padding:9px 0;color:#545A6C}
+.select{
+  border:1px solid #DFDFE5;border-radius:8px;background:#fff;
+  padding:9px 10px;color:#626979;font-weight:800;font-size:10px
+}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.chip{
+  border:1px solid #E1DFD6;border-radius:999px;background:#fff;
+  color:#747988;padding:6px 9px;font-size:9px;font-weight:900
+}
+.chip.active{background:#E8E8FF;color:#6264A9;border-color:#CECEFF}
+#categoryChips .chip[data-cat="객실"],
+#categoryChips .chip[data-cat="인스펙"],
+#categoryChips .chip[data-cat="시설"]{background:#E7F5EE;border-color:#CCEADD;color:#5E7669}
+#categoryChips .chip[data-cat="프런트"],
+#categoryChips .chip[data-cat="체크인"],
+#categoryChips .chip[data-cat="체크아웃"],
+#categoryChips .chip[data-cat="예약"],
+#categoryChips .chip[data-cat="가격·재고"]{background:#E7F2FA;border-color:#CDE4F4;color:#5D7687}
+#categoryChips .chip[data-cat="조식"],
+#categoryChips .chip[data-cat="음료"],
+#categoryChips .chip[data-cat="레스토랑"],
+#categoryChips .chip[data-cat="레스토랑예약"]{background:#FFF4D6;border-color:#F0DFB0;color:#80765D}
+#categoryChips .chip[data-cat="리뷰"],
+#categoryChips .chip[data-cat="고객편의"],
+#categoryChips .chip[data-cat="브랜드"],
+#categoryChips .chip[data-cat="공통"],
+#categoryChips .chip[data-cat="오픈"],
+#categoryChips .chip[data-cat="마감"],
+#categoryChips .chip[data-cat="CS"],
+#categoryChips .chip[data-cat="안전"]{background:#EEEEFF;border-color:#D9D9FF;color:#686A9B}
+
+.section-title{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:12px;
+  margin:22px 3px 10px;position:relative;z-index:2;
+}
+.section-title h2{
+  margin:0;font-family:"Noto Sans KR",sans-serif;
+  font-size:27px;font-weight:900;color:#5A5F80;letter-spacing:-.045em
+}
+.section-title p{margin:4px 0 0;color:#868B98;font-size:10px}
+.result{font-size:10px;color:#898E99;font-weight:850}
+.grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
+  position:relative;z-index:2;
+}
+.card{
+  --card:#EEEEFF;
+  --accent:#A8AAFF;
+  --deep:#6669A4;
+
+  background:var(--card);
+  border:1px solid color-mix(in srgb,var(--accent) 42%,#fff 58%);
+  border-radius:13px;
+  min-height:252px;padding:14px;
+  box-shadow:0 8px 20px rgba(58,62,104,.07);
+  position:relative;display:flex;flex-direction:column;
+  transition:.16s ease;overflow:hidden;
+}
+.card:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(58,62,104,.12)}
+.card[data-cat="객실"],.card[data-cat="인스펙"],.card[data-cat="시설"]{
+  --card:#E4F4EC;--accent:#B9E0CF;--deep:#5E766A
+}
+.card[data-cat="프런트"],.card[data-cat="체크인"],.card[data-cat="체크아웃"],.card[data-cat="예약"],.card[data-cat="가격·재고"]{
+  --card:#E2F0F9;--accent:#A8CEE8;--deep:#5E7689
+}
+.card[data-cat="조식"],.card[data-cat="음료"],.card[data-cat="레스토랑"],.card[data-cat="레스토랑예약"]{
+  --card:#FFF1C9;--accent:#F2D18A;--deep:#7D745A
+}
+.card[data-cat="리뷰"],.card[data-cat="고객편의"],.card[data-cat="브랜드"],.card[data-cat="공통"],.card[data-cat="오픈"],.card[data-cat="마감"],.card[data-cat="CS"],.card[data-cat="안전"]{
+  --card:#E9E9FF;--accent:#B9BAFF;--deep:#686AA1
+}
+.card.custom-tone-violet{--card:#E7E7FF;--accent:#9FA1FF;--deep:#6264A4}
+.card.custom-tone-blue{--card:#DDEEF9;--accent:#9CC5E5;--deep:#57758A}
+.card.custom-tone-pink{--card:#F8DCE6;--accent:#F4A8C4;--deep:#885D70}
+.card.custom-tone-mint{--card:#E1F3EA;--accent:#BFE5D3;--deep:#5D756B}
+.card.custom-tone-yellow{--card:#FFF0C7;--accent:#F8D78D;--deep:#7C735A}
+
+.card.is-read{
+  background:color-mix(in srgb,var(--card) 74%,var(--accent) 26%);
+  border-color:color-mix(in srgb,var(--accent) 82%,#fff 18%);
+}
+.card.is-read:after{
+  content:"✓ 읽음";
+  position:absolute;right:10px;bottom:9px;
+  padding:4px 7px;border-radius:999px;
+  background:rgba(255,255,255,.72);color:var(--deep);
+  font-size:8px;font-weight:900;
+}
+.card-image{
+  margin:-14px -14px 12px;
+  height:130px;overflow:hidden;
+  border-bottom:1px solid rgba(62,67,110,.12);
+  background:#D9DEEA;
+}
+.card-image img{width:100%;height:100%;object-fit:cover;display:block}
+.card-image.thumb{
+  width:92px;height:76px;margin:0 0 10px auto;border-radius:9px;border:1px solid rgba(62,67,110,.12)
+}
+.card-image.bg{
+  position:absolute;inset:0;margin:0;height:auto;z-index:0;border:0;
+}
+.card-image.bg:after{
+  content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,35,70,.12),rgba(255,255,255,.72) 65%,var(--card) 100%);
+}
+.card-image.bg img{filter:saturate(.86)}
+.card.has-bg-image>*:not(.card-image){position:relative;z-index:2}
+.card-top{display:flex;justify-content:space-between;gap:9px;align-items:flex-start}
+.badges{display:flex;gap:4px;flex-wrap:wrap;max-width:76%}
+.badge{
+  font-size:8px;font-weight:900;padding:5px 6px;border-radius:7px;
+  background:rgba(255,255,255,.68);color:#6F7480;border:1px solid rgba(255,255,255,.8)
+}
+.badge.cat{color:var(--deep)}
+.source{text-align:right;font-size:8px;line-height:1.5;color:#858B97;font-weight:850}
+.card-title{
+  margin:12px 0 9px;
+  line-height:1.45;letter-spacing:-.045em;
+}
+.title-font-gothic{font-family:"Noto Sans KR",sans-serif}
+.title-font-batang{font-family:"Gowun Batang",serif}
+.title-accent-highlight{
+  display:inline;
+  padding:0 3px;
+  background:linear-gradient(transparent 50%,rgba(255,255,255,.72) 50%,rgba(255,255,255,.72) 95%,transparent 95%);
+}
+.title-accent-underline{
+  text-decoration:underline;text-decoration-thickness:3px;
+  text-decoration-color:var(--accent);text-underline-offset:5px
+}
+.title-accent-box{
+  display:inline;padding:3px 7px;border-radius:7px;background:rgba(255,255,255,.56)
+}
+.tags{display:flex;gap:4px;flex-wrap:wrap}
+.tag{
+  font-size:8px;font-weight:800;color:#757B87;background:rgba(255,255,255,.60);
+  border-radius:6px;padding:4px 6px
+}
+.key-excerpt{
+  margin:11px 0 0;font-size:11.5px;line-height:1.72;color:#5D6473
+}
+.key-excerpt strong{font-weight:900;color:#4B5261}
+.key-excerpt u{text-decoration-thickness:1.6px;text-decoration-color:var(--accent);text-underline-offset:3px;font-weight:850}
+.key-excerpt mark{
+  background:linear-gradient(transparent 35%,rgba(255,255,255,.82) 35%,rgba(255,255,255,.82) 93%,transparent 93%);
+  padding:0 2px;color:inherit;font-weight:900
+}
+.card-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;margin-top:auto;padding-top:15px}
+.timing{font-size:8px;color:#818794;font-weight:800;line-height:1.5}
+.read-time{color:var(--deep);font-weight:900}
+.personal-tools{display:flex;gap:4px;align-items:center;z-index:3;margin-right:46px}
+.icon-btn{
+  border:1px solid rgba(255,255,255,.82);background:rgba(255,255,255,.74);color:#737A87;
+  border-radius:8px;min-width:32px;min-height:30px;padding:5px 7px;font-size:10px;font-weight:950
+}
+.icon-btn.hearted{background:#F4EAF0;color:#8B6274;border-color:#E8CDD8}
+.icon-btn.noted{background:#ECF4FB;color:#5E7788;border-color:#D4E6F4}
+.card-sticker{
+  position:absolute;right:12px;top:50%;transform:translateY(-35%);
+  font-size:31px;opacity:.32;pointer-events:none
+}
+.empty{
+  grid-column:1/-1;background:#FFF9E9;border:1px dashed #DDD9C8;
+  border-radius:12px;padding:56px 20px;text-align:center;color:#7F8490
+}
+
+/* Rich editor */
+dialog{
+  width:min(850px,calc(100% - 18px));border:0;border-radius:16px;padding:0;background:#FFF9E9;color:var(--ink);
+  box-shadow:0 30px 90px rgba(41,42,80,.30)
+}
+dialog::backdrop{background:rgba(46,45,91,.42);backdrop-filter:blur(5px)}
+.modal-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 19px 12px;background:linear-gradient(90deg,#E9E9FF,#E1F1FA);
+  border-bottom:1px solid #DBDCE7
+}
+.modal-head h2{margin:0;font-family:"Noto Sans KR",sans-serif;font-size:19px;color:#5D6286;font-weight:900}
+.close{
+  width:33px;height:33px;border-radius:50%;border:1px solid #DCDDE7;background:#fff;color:#737989;font-size:17px
+}
+.modal-body{padding:18px 19px 22px;max-height:82vh;overflow:auto}
+.detail-title{font-family:"Noto Sans KR",sans-serif;font-size:26px;letter-spacing:-.05em;line-height:1.36;margin:13px 0 8px;color:#4E5567;font-weight:900}
+.detail-meta{font-size:10px;color:#858A96;font-weight:800}
+.change-note{
+  margin:14px 0 0;padding:11px 13px;border-radius:9px;background:#EEEEFF;border-left:3px solid #9FA1FF;
+  color:#666A92;font-size:11px;line-height:1.7
+}
+.detail-content{margin-top:18px;font-size:14px;line-height:1.9;color:#535A69}
+.detail-content .focus{
+  display:block;margin:7px 0;padding:9px 10px;border-radius:8px;background:linear-gradient(90deg,#E5F4EC,#E6F2FA);
+  border-left:3px solid #9CC5E5;font-weight:850
+}
+.detail-content .underline{text-decoration:underline;text-decoration-thickness:1.6px;text-underline-offset:3px;text-decoration-color:#9FA1FF;font-weight:800}
+.detail-content .strong{font-weight:900;color:#454B5D}
+.rich-content{line-height:1.85}
+.rich-content .gowun{font-family:"Gowun Batang",serif}
+.rich-content mark{background:#FFF0A7;padding:0 2px;border-radius:2px;color:inherit}
+.personal-panel{
+  margin-top:18px;padding:13px;border-radius:11px;background:linear-gradient(135deg,#EEEEFF,#E9F5FB,#EAF6EF);
+  border:1px solid #DEE1EC
+}
+.personal-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:8px}
+.personal-head b{font-size:11px;color:#62697A}
+.heart-large{
+  border:1px solid #DDDDFF;background:#fff;color:#7476A8;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:900
+}
+.heart-large.on{background:#ECECFF;color:#6264A8}
+.memo{
+  width:100%;min-height:92px;resize:vertical;border:1px solid #DDE1E9;border-radius:9px;background:#fff;
+  padding:10px;color:#555C6A;line-height:1.65;outline:none
+}
+.memo:focus{border-color:#9FA1FF;box-shadow:0 0 0 3px rgba(159,161,255,.14)}
+.modal-actions{display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap;margin-top:17px}
+.btn{
+  border:1px solid #DEDFE7;background:#fff;color:#69717F;border-radius:9px;padding:9px 11px;font-size:10px;font-weight:850
+}
+.btn.primary{background:#6866B1;color:#FFF4DA;border-color:#6866B1}
+.btn.mint{background:#E7F5EE;color:#5D7568;border-color:#D1E8DC}
+.btn.danger{background:#F5F1F2;color:#806A73;border-color:#E6DCDD}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.style-grid .field.full{grid-column:1/-1}
+.field label{font-size:10px;font-weight:850;color:#707785}
+.field input,.field select,.field textarea{
+  border:1px solid #DDE0E7;background:#fff;border-radius:8px;padding:10px 11px;outline:none;color:#555C6B
+}
+.field textarea{min-height:130px;resize:vertical;line-height:1.7}
+.help{font-size:9px;color:#898F99}
+.style-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+  padding:10px;border-radius:10px;background:#F0F1FF;border:1px solid #DFDFFF
+}
+.color-input{
+  min-height:39px;padding:4px!important
+}
+.rich-toolbar{
+  display:flex;gap:5px;flex-wrap:wrap;padding:8px;border:1px solid #DDE0E7;border-bottom:0;
+  background:#F7F7FB;border-radius:8px 8px 0 0
+}
+.rich-btn{
+  border:1px solid #DDE0E7;background:#fff;color:#626979;border-radius:6px;padding:6px 8px;font-size:9px;font-weight:850
+}
+.rich-btn:hover{background:#ECECFF}
+.rich-editor{
+  min-height:180px;border:1px solid #DDE0E7;background:#fff;border-radius:0 0 8px 8px;padding:12px;outline:none;
+  color:#4E5565;line-height:1.8;font-size:13px
+}
+.rich-editor:focus{border-color:#9FA1FF;box-shadow:0 0 0 3px rgba(159,161,255,.10)}
+.rich-editor .gowun{font-family:"Gowun Batang",serif}
+.rich-editor mark{background:#FFF0A7;padding:0 2px}
+.upload-label{
+  border:1px dashed #CBD6E2;border-radius:8px;background:#EAF4FB;padding:11px;text-align:center;font-size:10px;font-weight:850;cursor:pointer
+}
+input[type=file]{display:none}
+.imgprev{display:flex;gap:7px;flex-wrap:wrap}
+.imgbox{position:relative}
+.imgbox img{width:118px;height:85px;object-fit:cover;border-radius:8px;border:1px solid #DDE1E8}
+.imgbox button{
+  position:absolute;right:4px;top:4px;width:22px;height:22px;border:0;border-radius:50%;background:rgba(68,72,102,.78);color:#fff
+}
+.image-settings{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:7px}
+.preview-note{font-size:9px;color:#858B96;margin-top:5px}
+
+footer{
+  position:relative;z-index:2;
+  text-align:center;padding:30px 0 8px;color:#858B98;font-size:9px;line-height:1.7
+}
+footer span{display:inline-block;background:#FFF1C9;color:#7E745B;padding:6px 9px;border-radius:999px;font-weight:850}
+
+@media(max-width:930px){
+  .hero{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .status-band{grid-template-columns:1fr 1fr}
+  .stat.big{grid-column:1/-1}
+  .style-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  body{background:#6866B1}
+  .page{width:100%;margin:0;border:0;border-radius:0;padding:10px 10px 50px;box-shadow:none}
+  .top-actions{display:none}
+  .hero-main,.hero-side{border-radius:14px}
+  .hero-main{min-height:0;padding:23px 18px 20px}
+  .hero h1{font-size:43px;margin:24px 0 13px}
+  .hero-copy{font-size:12.5px}
+  .hero-main:before{font-size:55px;right:22px}
+  .hero-side{padding:14px}
+  .vending{min-height:0}
+  .status-band{grid-template-columns:1fr 1fr;gap:7px}
+  .stat{min-height:80px;padding:12px}
+  .stat.big{grid-column:1/-1}
+  .reminder-bar{grid-template-columns:auto 1fr}
+  .reminder-btn{grid-column:1/-1;width:100%}
+  .toolbar{position:static;padding:8px}
+  .toolbar-top{grid-template-columns:1fr}
+  .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:3px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto}
+  .section-title h2{font-size:24px}
+  .section-title p{display:none}
+  .grid{grid-template-columns:1fr;gap:8px}
+  .card{min-height:0}
+  .card-title{font-size:18px!important}
+  .personal-tools{margin-right:45px}
+  .form-grid,.style-grid,.image-settings{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .detail-title{font-size:22px}
+  .detail-content{font-size:14.5px}
+}
+
+/* ===== 2026-09 dreamy status/read/new/photo layout update ===== */
+.live-clock{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-left:auto;
+  margin-right:10px;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,244,218,.20);
+  color:#FFF4DA;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.03em;
+  white-space:nowrap;
+}
+.live-clock b{font-size:10px}
+.hero-main .hero-copy,
+.hero-main .hero-note{display:none!important}
+.hero-main{
+  min-height:260px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.hero h1{
+  margin:6px 0 0;
+  max-width:none;
+}
+.hero h1 span{
+  display:inline;
+  margin-left:6px;
+}
+.hero-main:after{
+  content:"✦  ·  ✧  ·  ✦  ·  ☆";
+  right:48px;
+  bottom:34px;
+}
+.hero-main .kicker{margin-bottom:14px}
+
+/* read card = whole card fades clearly */
+.card.is-read{
+  opacity:.56;
+  filter:saturate(.64) brightness(1.04);
+  background:color-mix(in srgb,var(--card) 68%,#fff 32%);
+  border-color:color-mix(in srgb,var(--accent) 46%,#fff 54%);
+  box-shadow:none;
+}
+.card.is-read:hover{
+  opacity:.72;
+  filter:saturate(.76) brightness(1.03);
+}
+.card.is-read:after{
+  content:"✓ 읽음";
+  position:absolute;
+  right:10px;
+  bottom:9px;
+  padding:4px 7px;
+  border-radius:999px;
+  background:rgba(255,255,255,.82);
+  color:var(--deep);
+  font-size:8px;
+  font-weight:900;
+}
+
+/* new notice during first 7 days */
+.card.is-new{
+  border:2px solid #F4A8C4;
+  box-shadow:
+    0 0 0 3px rgba(244,168,196,.12),
+    0 11px 26px rgba(66,67,112,.08);
+}
+.card.is-new:before{
+  content:"NEW";
+  position:absolute;
+  left:10px;
+  top:10px;
+  z-index:5;
+  padding:4px 7px;
+  border-radius:999px;
+  background:#F4A8C4;
+  color:#fff;
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.card.is-new.has-image .card-image.wide{margin-top:11px}
+
+/* photo cards: large image on the left, content flows on right */
+.card.has-image{
+  display:grid;
+  grid-template-columns:minmax(150px,42%) minmax(0,1fr);
+  grid-template-rows:auto;
+  column-gap:14px;
+  min-height:250px;
+  padding:0;
+}
+.card.has-image .card-image{
+  grid-column:1;
+  grid-row:1 / span 20;
+  width:100%;
+  height:100%;
+  min-height:250px;
+  margin:0;
+  border:0;
+  border-right:1px solid rgba(62,67,110,.10);
+  border-radius:12px 0 0 12px;
+  overflow:hidden;
+  align-self:stretch;
+}
+.card.has-image .card-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.card.has-image .card-top,
+.card.has-image .card-title,
+.card.has-image .tags,
+.card.has-image .key-excerpt,
+.card.has-image .card-foot{
+  grid-column:2;
+  margin-left:0;
+  margin-right:14px;
+}
+.card.has-image .card-top{margin-top:14px}
+.card.has-image .card-title{margin-top:10px}
+.card.has-image .card-foot{margin-bottom:13px}
+.card.has-image .card-sticker{
+  right:16px;
+  top:52%;
+}
+/* ignore old thumb/bg styles for current display */
+.card.has-image .card-image.thumb,
+.card.has-image .card-image.bg{
+  position:relative;
+  inset:auto;
+  width:100%;
+  height:100%;
+  min-height:250px;
+  margin:0;
+  border-radius:12px 0 0 12px;
+}
+.card.has-image .card-image.bg:after{display:none}
+.card.has-bg-image>*:not(.card-image){position:relative}
+
+/* extra dreamy atmosphere */
+.page:after{
+  content:"✦   ·   ✧   ·   ✦";
+  position:absolute;
+  top:355px;
+  right:42px;
+  color:rgba(104,102,177,.15);
+  font-size:20px;
+  letter-spacing:9px;
+  pointer-events:none;
+}
+.dream-divider{
+  height:1px;
+  margin:14px 0;
+  background:linear-gradient(90deg,transparent,#B7B9FF 24%,#F4A8C4 50%,#9CC5E5 76%,transparent);
+  opacity:.45;
+}
+
+/* emoji library */
+.emoji-library{
+  display:grid;
+  grid-template-columns:repeat(10,1fr);
+  gap:6px;
+  padding:9px;
+  border:1px solid #DDE0E7;
+  border-radius:9px;
+  background:#F7F7FD;
+}
+.emoji-choice{
+  border:1px solid #E1E3EA;
+  background:#fff;
+  border-radius:8px;
+  min-height:36px;
+  font-size:18px;
+  display:grid;
+  place-items:center;
+  transition:.13s;
+}
+.emoji-choice:hover{
+  transform:translateY(-1px);
+  background:#EEEEFF;
+}
+.emoji-choice.selected{
+  background:#E7E7FF;
+  border-color:#9FA1FF;
+  box-shadow:0 0 0 2px rgba(159,161,255,.12);
+}
+.emoji-selected-line{
+  margin-top:7px;
+  font-size:9px;
+  color:#7C8291;
+}
+.emoji-selected-line b{font-size:16px}
+#sticker{display:none}
+
+@media(max-width:680px){
+  .live-clock{
+    margin:0;
+    padding:6px 8px;
+    font-size:8px;
+    max-width:58vw;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .hero-main{min-height:220px}
+  .hero h1{font-size:40px}
+  .card.has-image{
+    grid-template-columns:38% minmax(0,1fr);
+    column-gap:10px;
+    min-height:225px;
+  }
+  .card.has-image .card-image,
+  .card.has-image .card-image.thumb,
+  .card.has-image .card-image.bg{
+    min-height:225px;
+    border-radius:11px 0 0 11px;
+  }
+  .card.has-image .card-top,
+  .card.has-image .card-title,
+  .card.has-image .tags,
+  .card.has-image .key-excerpt,
+  .card.has-image .card-foot{
+    margin-right:10px;
+  }
+  .card.has-image .card-top{margin-top:11px}
+  .card.has-image .card-title{
+    font-size:16px!important;
+    margin-bottom:7px;
+  }
+  .card.has-image .key-excerpt{
+    font-size:10.5px;
+    line-height:1.58;
+  }
+  .card.has-image .tags{
+    display:none;
+  }
+  .emoji-library{grid-template-columns:repeat(6,1fr)}
+}
+
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topbar">
+    <div class="brand"><span class="brand-mark">T</span> TOYU DAILY NOTE</div>
+    <div class="live-clock" id="liveClock"><b>오늘</b><span>--</span></div><div class="top-actions">
+      <button class="small-btn" id="addBtn">＋ 공지 추가</button>
+      <button class="small-btn" id="markAllBtn">오늘 필독 모두 확인</button>
+      <button class="small-btn" id="exportBtn">백업</button>
+      <label class="small-btn" for="importFile">복원</label>
+      <input id="importFile" type="file" accept="application/json">
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-main">
+      <span class="kicker">DAILY NOTICE · LAST UPDATED TO NOW ✦</span>
+      <h1>TOYU <span>Daily NOTE</span></h1>
+</div>
+
+    <div class="hero-side">
+      <div class="vending">
+        <div class="vending-screen">
+          <div class="side-title">My desk ✦</div>
+          <div class="staff-box">
+            <label for="staffSelect">WHO AM I?</label>
+            <select id="staffSelect" class="staff-select">
+              <option>선영</option><option>일웅</option><option>은진</option>
+              <option>정민</option><option>지배인</option><option>스탭1</option>
+            </select>
+            <p class="staff-copy">직원별 읽음 기록 · ♡ 중요 표시 · 개인 메모가 따로 저장됩니다.</p>
+            <div class="personal-actions">
+              <button id="heartOnlyBtn" class="personal-filter">♡ 내 하트만</button>
+              <button id="memoOnlyBtn" class="personal-filter">✎ 내 메모만</button>
+            </div>
+          </div>
+          <div class="vending-lights"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="dream-divider"></div>
+
+  <section class="status-band">
+    <div class="stat big"><small>오늘 체크 🌙</small><b id="todayText">0 / 0 확인</b><div class="progress"><i id="progressBar"></i></div></div>
+    <div class="stat"><small>먼저 볼 것 ✦</small><b id="urgentCount">0</b></div>
+    <div class="stat"><small>최근 변경 ☁️</small><b id="updatedCount">0</b></div>
+    <div class="stat"><small>전체 공지 🥤</small><b id="totalCount">0</b></div>
+  </section>
+
+  <section class="reminder-bar">
+    <div class="reminder-icon">🌃</div>
+    <div class="reminder-copy">
+      <b id="reminderTitle">오늘의 작은 리마인드</b>
+      <span id="reminderText">아직 읽지 않은 중요한 공지 하나를 가볍게 다시 보여드려요.</span>
+    </div>
+    <button id="reminderOpenBtn" class="reminder-btn">열어보기</button>
+  </section>
+
+  <section class="toolbar">
+    <div class="toolbar-top">
+      <div class="search">⌕ <input id="searchInput" placeholder="제목 · 키워드 · 내용 검색"></div>
+      <select id="sortSelect" class="select">
+        <option value="priority">우선순위순</option>
+        <option value="newest">최신순</option>
+        <option value="oldest">오래된순</option>
+      </select>
+      <select id="timingSelect" class="select">
+        <option value="all">모든 업무 시점</option>
+        <option>업무 시작 전</option><option>오픈 직후</option><option>오픈 전</option>
+        <option>조식 시작 전</option><option>조식 서빙 중</option><option>조식 문의 시</option>
+        <option>체크인 준비 전</option><option>체크인 안내</option><option>퇴실 처리</option>
+        <option>인스펙 중</option><option>마감</option><option>퇴근 전</option><option>항상</option>
+      </select>
+    </div>
+    <div class="chips" id="priorityChips">
+      <button class="chip active" data-priority="all">전체</button>
+      <button class="chip" data-priority="urgent">✦ 먼저 보기</button>
+      <button class="chip" data-priority="updated">☁️ 최근 변경</button>
+      <button class="chip" data-priority="important">중요</button>
+      <button class="chip" data-priority="reference">참고</button>
+      <button class="chip" id="unreadOnlyBtn">○ 안 읽은 것</button>
+      <button class="chip" id="readOnlyBtn">✓ 오늘 읽은 것</button>
+    </div>
+    <div class="chips" id="categoryChips"></div>
+  </section>
+
+  <div class="section-title">
+    <div><h2>공지 자판기</h2><p>카드를 고르듯 필요한 공지만 꺼내 보세요.</p></div>
+    <div class="result" id="resultCount">0건</div>
+  </div>
+  <main class="grid" id="grid"></main>
+
+  <footer>
+    <span>🌙 잘 외우는 것보다, 잘 떠올릴 수 있게</span><br><br>
+    현재 시각 기준으로 공지 상태를 보여주며, 직원별 읽음·하트·메모와 공지 편집 스타일은 현재 브라우저에 저장됩니다.
+  </footer>
+</div>
+
+<dialog id="detailDialog">
+  <div class="modal-head"><h2>공지 자세히 보기 ✦</h2><button class="close" data-close="detailDialog">×</button></div>
+  <div class="modal-body" id="detailBody"></div>
+</dialog>
+
+<dialog id="editDialog">
+  <div class="modal-head"><h2 id="editTitle">새 공지 꾸미기 ✦</h2><button class="close" data-close="editDialog">×</button></div>
+  <div class="modal-body">
+    <form id="noticeForm">
+      <input type="hidden" id="nid">
+      <div class="form-grid">
+        <div class="field"><label>중요도</label>
+          <select id="priority"><option value="urgent">먼저 보기</option><option value="updated">최근 변경</option><option value="important" selected>중요</option><option value="reference">참고</option></select>
+        </div>
+        <div class="field"><label>업무 구분</label>
+          <select id="category"><option>공통</option><option>오픈</option><option>조식</option><option>음료</option><option>프런트</option><option>체크인</option><option>체크아웃</option><option>객실</option><option>인스펙</option><option>예약</option><option>가격·재고</option><option>레스토랑예약</option><option>레스토랑</option><option>리뷰</option><option>CS</option><option>안전</option><option>고객편의</option><option>시설</option><option>마감</option><option>브랜드</option></select>
+        </div>
+        <div class="field"><label>확인 시점</label><input id="timing" placeholder="예: 조식 시작 전"></div>
+        <div class="field"><label>출처</label><input id="source" placeholder="대표님 / 지배인님"></div>
+        <div class="field full"><label>제목</label><input id="title" required></div>
+        <div class="field"><label>키워드</label><input id="keywords" placeholder="쉼표로 구분"></div>
+        <div class="field"><label>공지일</label><input id="date" type="date" required></div>
+      </div>
+
+      <div class="field full" style="margin-top:12px">
+        <label>카드 스타일</label>
+        <div class="style-grid">
+          <div class="field">
+            <label>카드 컬러</label>
+            <select id="cardTone">
+              <option value="auto">업무군 자동</option>
+              <option value="violet">라벤더</option>
+              <option value="blue">스카이블루</option>
+              <option value="pink">핑크</option>
+              <option value="mint">민트</option>
+              <option value="yellow">크림 옐로우</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>장식 이모지 라이브러리</label>
+            <input id="sticker" value="">
+            <div class="emoji-library" id="emojiLibrary"></div>
+            <div class="emoji-selected-line">선택된 이모지: <b id="selectedEmoji">없음</b> · 다시 누르면 변경됩니다.</div>
+          </div>
+          <div class="field">
+            <label>제목 글꼴</label>
+            <select id="titleFont">
+              <option value="gothic">고딕체</option>
+              <option value="batang">Gowun Batang</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>제목 굵기</label>
+            <select id="titleWeight">
+              <option value="600">Semi Bold</option>
+              <option value="700" selected>Bold</option>
+              <option value="800">Extra Bold</option>
+              <option value="900">Black</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>제목 크기</label>
+            <select id="titleSize">
+              <option value="17">작게</option>
+              <option value="19" selected>보통</option>
+              <option value="22">크게</option>
+              <option value="25">아주 크게</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>제목 컬러</label>
+            <input class="color-input" id="titleColor" type="color" value="#4C5263">
+          </div>
+          <div class="field">
+            <label>제목 강조</label>
+            <select id="titleAccent">
+              <option value="none">없음</option>
+              <option value="highlight">은은한 하이라이트</option>
+              <option value="underline">컬러 밑줄</option>
+              <option value="box">반투명 박스</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>사진 배치</label>
+            <select id="imageLayout">
+              <option value="wide">상단 와이드</option>
+              <option value="thumb">작은 썸네일</option>
+              <option value="background">배경형</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="field full" style="margin-top:12px">
+        <label>상세 내용 · 원하는 부분만 꾸미기</label>
+        <div class="rich-toolbar">
+          <button type="button" class="rich-btn" data-cmd="bold"><b>B</b> 굵게</button>
+          <button type="button" class="rich-btn" data-cmd="underline"><u>U</u> 밑줄</button>
+          <button type="button" class="rich-btn" id="highlightBtn">형광</button>
+          <button type="button" class="rich-btn" id="gowunBtn">Gowun Batang</button>
+          <button type="button" class="rich-btn" id="gothicBtn">고딕체</button>
+          <button type="button" class="rich-btn" id="clearFormatBtn">서식 지우기</button>
+        </div>
+        <div id="contentEditor" class="rich-editor" contenteditable="true"></div>
+        <span class="help">기본은 모두 고딕체입니다. 일부 문장만 선택한 뒤 Gowun Batang / 굵게 / 밑줄 / 형광을 눌러 꾸밀 수 있습니다.</span>
+      </div>
+
+      <div class="field full" style="margin-top:12px">
+        <label>변경 이력 <span class="help">(선택)</span></label>
+        <textarea id="changeNote" style="min-height:80px"></textarea>
+      </div>
+
+      <div class="field full" style="margin-top:12px">
+        <label>공지 사진</label>
+        <label class="upload-label" for="imageInput">＋ 사진 여러 장 올리기 🖼️</label>
+        <input id="imageInput" type="file" accept="image/*" multiple>
+        <div class="imgprev" id="imgprev"></div>
+        <div class="preview-note">첫 번째 사진이 카드 대표사진으로 표시됩니다. 순서를 바꾸려면 삭제 후 원하는 순서로 다시 선택하세요.</div>
+      </div>
+
+      <div class="modal-actions"><button type="button" class="btn" data-close="editDialog">취소</button><button class="btn primary" type="submit">저장하기</button></div>
+    </form>
+  </div>
+</dialog>
+
+<script>
+const SEED = [{"priority": "urgent", "category": "공통", "timing": "업무 시작 전", "title": "출근하면 먼저 공지·전달·이슈 확인 + 체크표기", "keywords": ["공지확인", "전달사항", "체크표기", "업무시작"], "date": "2026-09-07", "source": "대표님", "content": "출근 후 업무를 시작하기 전에 지난 톡 대화, 전달 기록, 이슈와 게시판 공지를 먼저 확인합니다.\n\n업무 시작 전뿐 아니라 업무 중간에도 새 공지가 올라왔는지 확인하고, 읽은 공지는 반드시 체크표기를 남깁니다.\n\n핵심: ‘봤겠지’가 아니라 읽은 사람이 체크해서 전달 누락을 없애는 것이 기준입니다.", "id": "seed-001", "images": [], "archived": false, "changeNote": ""}, {"priority": "urgent", "category": "프런트", "timing": "항상", "title": "업무폰은 항상 소지하고 전화 놓치지 않기", "keywords": ["업무폰", "전화", "객실문의", "소지"], "date": "2026-08-24", "source": "BKim·임영준", "content": "객실 및 외부 고객 전화가 들어올 수 있으므로 업무폰을 홀이나 백오피스에 두고 자리를 비우지 않습니다.\n\n담당자가 바뀌는 경우 인수인계를 명확히 하고, 카드키 분실·객실 이슈 등 현장 확인이 필요한 내용도 업무폰 소지자가 놓치지 않도록 체크합니다.", "id": "seed-002", "images": [], "archived": false, "changeNote": ""}, {"priority": "updated", "category": "오픈", "timing": "오픈 직후", "title": "출입문 최신 기준 — 퇴근/출근 때 문 상태가 반대", "keywords": ["출입문", "메뉴판쪽문", "주출입문", "오픈"], "date": "2026-09-05", "source": "대표님", "content": "퇴근 시: 자동문 옆 주 출입문 위쪽은 잠그고, 메뉴판 쪽 문은 이른 퇴실 고객·이른 출근 직원을 위해 잠금 해제합니다.\n\n출근 시: 메뉴판 쪽 유리문은 즉시 잠그고, 주 출입문은 잠금을 풀어 사용합니다.\n\n이유: 메뉴판 쪽 문을 안에서 밀고 나가면 앞의 스탠딩 메뉴판이 넘어질 수 있어 위험합니다.", "changeNote": "8/29 공지보다 9/5 공지가 퇴근/출근 상태를 더 구체적으로 정리한 최신 기준입니다.", "id": "seed-003", "images": [], "archived": false}, {"priority": "updated", "category": "오픈", "timing": "오픈 전", "title": "복도 음악 — 오전 8:30 올리고 / 오후 8:30 낮추기", "keywords": ["복도음악", "8시30분", "볼륨", "알람"], "date": "2026-09-07", "source": "BKim·임영준", "content": "최신 합의 기준은 오전·오후 모두 8시 30분을 기준으로 합니다.\n\n• 오전 8:30: 복도 음악 볼륨을 올리는 기준 시간\n• 오후 8:30: 복도 음악 볼륨을 낮추는 기준 시간\n• 업무일지의 이전 ‘야간 10시’ 표기는 삭제하고, 폰 알람을 맞춰 놓습니다.\n\n민감 고객이 있는 객실은 소리 강도를 더 세심하게 확인합니다.", "changeNote": "9/7 오전에는 9시 의견도 있었으나, 이후 대표·지배인 논의 후 오전/오후 모두 8:30으로 정리되었습니다.", "id": "seed-004", "images": [], "archived": false}, {"priority": "important", "category": "오픈", "timing": "오픈 직후", "title": "아침 복도 분위기 — 조명·향기·음악은 고객 맞이의 일부", "keywords": ["조명", "룸스프레이", "향기", "복도", "체크아웃"], "date": "2026-09-05", "source": "대표님", "content": "오픈 시 4층부터 조명을 켜고 내려오면서 복도 컨디션을 확인합니다. 룸스프레이는 복도에 은은하게 향이 남도록 사용하고, 조식·체크아웃 고객이 나올 때 음악과 향기가 준비되어 있어야 합니다.\n\n단, 향에 민감하거나 관련 클레임이 있는 고객/객실은 분사를 줄이거나 하지 않습니다.", "id": "seed-005", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "오픈", "timing": "오픈 직후", "title": "냉수·온수 보온병 2개 + 얼음 먼저 준비", "keywords": ["냉수", "온수", "보온병", "얼음", "커피", "티"], "date": "2026-08-19", "source": "대표님", "content": "아침 출근 후 보온병 2개에 냉수와 온수를 준비합니다.\n\n• 냉수: 얼음을 넣은 차가운 물\n• 온수: 약 90℃ 정도\n• 커피 제공 온도: 약 85℃\n• 티 제공 온도: 약 75~80℃\n• 조식 전후 주방 제빙기 얼음을 프런트 제빙기에 보충해 바닥나지 않게 합니다.", "id": "seed-006", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "음료", "timing": "음료 제공 전", "title": "아이스 음료는 ‘차가운 원액 + 냉수 + 얼음’ — 미지근하게 금지", "keywords": ["아이스음료", "냉장음료", "냉수", "온도"], "date": "2026-08-19", "source": "대표님", "content": "아이스 음료에 기본 온도의 정수물 + 얼음만 넣어 미지근하게 제공하지 않습니다.\n\n백오피스에 실온으로 놓였던 음료를 바로 사용하지 말고, 냉장고 안의 충분히 차가운 음료를 사용합니다. 음식과 음료 모두 ‘적정 온도’가 맛의 일부입니다.", "id": "seed-007", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "조식", "timing": "조식 예약 전", "title": "8:30 예약 과밀 금지 — 뒤집기 테이블 수까지 보고 배분", "keywords": ["8시30분", "예약분산", "뒤집기테이블", "좌석"], "date": "2026-08-17", "source": "대표님", "content": "조식이 많은 날은 8:30 예약을 과도하게 몰지 않습니다. 앞 타임 식사가 길어지면 뒤집기 테이블 확보가 어려워집니다.\n\n예약 배분 시 8:00 이용팀과 뒤집기 가능한 테이블 수를 함께 봅니다. 좌석이 부족해질 경우 식사를 마친 고객에게 만족 여부를 여쭙고 자연스럽게 테이블 정리를 유도합니다.", "id": "seed-008", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "조식", "timing": "조식 시작 전", "title": "뒤집기 테이블 손님이 일찍 오면 로비 소파에서 정중히 대기", "keywords": ["조식대기", "로비소파", "뒤집기", "일찍도착"], "date": "2026-08-18", "source": "대표님", "content": "뒤집기 테이블이 아직 준비되지 않았는데 다음 타임 고객이 일찍 도착하면 식당 안에서 서서 기다리게 하지 않습니다.\n\n입구 로비 소파로 안내하고, 이전 타임 식사가 길어져 테이블을 정리하는 동안 잠시만 기다려 달라고 정중하게 설명합니다.", "id": "seed-009", "images": [], "archived": false, "changeNote": ""}, {"priority": "urgent", "category": "조식", "timing": "조식 서빙 중", "title": "서빙 순서와 타이밍 — 차 1/2 → 샐러드·스프 → 메인", "keywords": ["서빙순서", "차반잔", "샐러드", "스프", "메인"], "date": "2026-08-24", "source": "BKim·임영준", "content": "차는 잔의 약 1/2 정도만 따라 드립니다. 이후 샐러드·스프, 메인을 순차적으로 진행합니다.\n\n샐러드와 스프를 완전히 다 먹을 때까지 기다리지 말고 거의 드셨다고 판단되면 메인이 속도감 있게 나가도록 타이밍을 봅니다.\n\n쟁반을 놓거나 차를 따르기 전에 ‘모닝티 준비해드리겠습니다’, ‘빈 그릇 정리해드리겠습니다’처럼 먼저 한마디 하고 행동합니다. 빈 찻잔이 보이면 추가 차도 제안합니다.", "id": "seed-010", "images": [], "archived": false, "changeNote": ""}, {"priority": "urgent", "category": "조식", "timing": "조식 문의 시", "title": "조식 당일 취소·날짜 변경은 원칙적으로 불가", "keywords": ["당일취소", "날짜변경", "쿠폰차감", "7시30분"], "date": "2026-08-24", "source": "대표님", "content": "조식은 새벽부터 식재료 준비와 사전 조리가 시작되므로 당일 취소 및 날짜 변경은 원칙적으로 불가합니다. 늦잠·개인 일정·깜빡함 등 개인 사정으로 미이용해도 쿠폰은 사용(차감) 처리합니다.\n\n예외: 오전 7:30 이전 문의에 한해 먼저 ‘당일 변경 불가’ 원칙을 안내한 뒤, 주방 조리 진행 상황상 중단이 가능한지 확인하여 제한적으로 예외를 판단합니다.\n\n가능하면 늦더라도 식당으로 오시도록 친절하게 유도합니다.", "id": "seed-011", "images": [], "archived": false, "changeNote": ""}, {"priority": "updated", "category": "조식", "timing": "조식 문의 시", "title": "조식 포장·객실 이동 불가 — 식당 내 이용이 최신 원칙", "keywords": ["포장불가", "객실이동불가", "룸서비스", "코스요리"], "date": "2026-08-24", "source": "대표님", "content": "조식은 코스 요리로 제공되므로 품질과 위생을 위해 식당 내 이용만 가능합니다. 외부 포장 및 객실 이동은 기본적으로 불가합니다.\n\n늦잠 등으로 늦어진 경우 객실로 보내기보다 식당 방문을 유도하고, 가능한 범위에서 늦게라도 드실 수 있도록 식당 공간을 마련합니다.\n\n건강상 거동이 어렵거나 특별한 사정이 있는 경우만 상급자와 상의하여 예외 대응합니다.", "changeNote": "8/20에는 늦은 고객의 조식을 룸으로 이동하는 운영 예시가 있었지만, 8/24 게시판 공지에서 ‘객실 이동·포장 불가’가 기본 원칙으로 명확히 정리되었습니다.", "id": "seed-012", "images": [], "archived": false}, {"priority": "important", "category": "조식", "timing": "09:20 이후", "title": "늦게 내려오는 조식 고객 — 10시 브레이크타임 5분 전 안내", "keywords": ["늦은조식", "브레이크타임", "10시", "직원식사"], "date": "2026-08-24", "source": "대표님", "content": "9:20~9:30이 지나도 내려오지 않는 고객은 예약·연락 상태를 다시 확인합니다. 식사는 가능한 범위에서 진행하되, 10시 브레이크타임과 직원 식사시간이 시작된다는 점을 5분 전쯤 정중하게 안내합니다.\n\n고객과 직원 모두 불편하지 않도록 식사 공간을 분리·정리하고, 직원 식사 시작에 지장이 없게 마무리합니다.", "id": "seed-013", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "조식", "timing": "조식 종료 후", "title": "조식 노쇼는 10시경 바로 공유 + 퇴실 때 다정하게 한마디", "keywords": ["노쇼", "10시보고", "퇴실멘트", "컨디션"], "date": "2026-09-08", "source": "대표님", "content": "조식 노쇼 여부는 10시경 바로 채팅방에 공유해 퇴실 안내 직원도 알 수 있게 합니다. 예약 기록 오류인지 실제 노쇼인지도 확인합니다.\n\n퇴실 때는 ‘조식을 정성껏 준비하고 기다렸는데 안 내려오셔서 걱정했다’, ‘컨디션은 괜찮으셨는지’처럼 아쉽고 다정한 느낌으로 말씀드립니다. 필요하면 따뜻한 티 등 작은 배려를 제안합니다.", "id": "seed-014", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "조식", "timing": "조식 세팅 전", "title": "찻잔·식기·조식 POP 청결 확인 후 세팅", "keywords": ["찻잔", "식기", "POP", "얼룩", "청결"], "date": "2026-09-05", "source": "대표님", "content": "찻잔 안쪽 얼룩과 설거지 상태를 확인한 뒤 세팅합니다. 조식 세팅용 코팅 POP도 얼룩을 닦고, 구겨지거나 상처 난 것은 선별·폐기 후 다시 출력합니다.\n\n물컵은 물기가 남은 채 뒤집어 두지 않고 닦아서 사용합니다.", "id": "seed-015", "images": [], "archived": false, "changeNote": ""}, {"priority": "urgent", "category": "예약", "timing": "예약 입력 시", "title": "익스·아고다 ‘조포/룸온리’는 추정 금지 — 세부내역 검수", "keywords": ["익스피디아", "아고다", "룸온리", "조포", "예약검수"], "date": "2026-09-07", "source": "대표님", "content": "예약 시트와 TL을 함께 확인하여 조식 포함(조포) / 룸온리를 정확히 구분합니다.\n\n익스피디아는 룸온리 기준으로 관리해 왔고, 아고다는 8월 말부터 룸온리/조포 구분이 바뀌는 과정이 있었으므로 ‘아고다는 무조건 조포’처럼 추정하지 않습니다. 현재 예약의 상세 상품명을 직접 확인해 기록합니다.\n\n잘못 기재된 조식은 현장 무료 제공·추가 비용 누락으로 바로 이어질 수 있으므로 예약 검수 항목으로 둡니다.", "changeNote": "아고다 관련 기준이 8/25~8/26 사이 변경되었고, 9/7 최신 지시는 ‘룸온리/조포를 구분해 예약을 다시 검수’하는 것입니다.", "id": "seed-016", "images": [], "archived": false}, {"priority": "important", "category": "예약", "timing": "예약 입력 시", "title": "하드블럭·연박·금액은 예약 시트에 눈에 띄게 표기", "keywords": ["하드블럭", "연박", "금액", "예약시트"], "date": "2026-08-22", "source": "대표님", "content": "• 하드블럭: 국적 표기란에 오렌지 박스 + ‘하드블럭’ 표기\n• 연박: 예약자명/박수/금액 옆에 ‘2박/55만’처럼 박수와 금액을 함께 표기\n• 예약 시트에는 금액도 기재하여 1박/연박 착오를 줄입니다.\n\n야놀자 관리자에서 하드블럭 날짜와 개수를 확인하는 방법도 프런트 직원이 숙지합니다.", "id": "seed-017", "images": [], "archived": false, "changeNote": ""}, {"priority": "updated", "category": "예약", "timing": "예약 입력 시", "title": "객실 상품 표기 통일 — ‘스탠디럭’과 ‘스탠>디럭’은 완전히 다름", "keywords": ["스탠디럭", "스탠>디럭", "업그레이드", "표기통일"], "date": "2026-09-07", "source": "BKim·임영준", "content": "상품명과 업그레이드 표기를 구분합니다.\n\n• ‘스탠디럭’ 상품을 그대로 판매 → 스탠디럭\n• 스탠다드 판매 후 디럭스로 업그레이드 → 스탠>디럭\n• 디럭스 판매 후 프리미어 업그레이드 → 디럭>프리\n• 스탠디럭 판매 후 프리미어 업그레이드 → 스탠디럭>프리\n\n과거처럼 스탠디럭 상품을 ‘스탠>디럭’으로 쓰지 않습니다. 기존 기록도 최신 방식으로 수정합니다.", "changeNote": "9/7부터 표기 방식을 명확히 분리하도록 변경되었습니다.", "id": "seed-018", "images": [], "archived": false}, {"priority": "important", "category": "예약", "timing": "객실 배정 전", "title": "장박은 우선 아랫층 배정 / 고객 요청사항은 임의 변경 금지", "keywords": ["장박", "아랫층", "창가요청", "객실배정"], "date": "2026-09-07", "source": "BKim·임영준", "content": "장박 예약은 우선 아랫층 배정을 체크하고 시트에 반영합니다.\n\n창가, 특정 룸 등 고객 요청사항이 시트에 기록되어 있다면 변경하기 전에 요청 이유와 대체 가능 여부를 다시 확인합니다. 임의 변경 후 고객이 현장에서 ‘왜 다른 룸이냐’고 묻게 되는 상황을 피합니다.", "id": "seed-019", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "가격·재고", "timing": "공실 판매 시", "title": "당일 가격조정은 ‘상품 구분’부터 — 과거 숫자 재사용 금지", "keywords": ["당일판매", "가격조정", "룸온리", "조포", "재고"], "date": "2026-09-07", "source": "대표님", "content": "당일 판매 전략은 매일 달라질 수 있으므로 과거 채팅의 숫자 가격을 그대로 재사용하지 않습니다.\n\n국내/해외, 룸온리/조포, 객실 타입을 각각 구분해 현재 지시와 TL 재고를 보고 조정합니다. 조포만 낮추고 룸온리는 높이는 방식, 시간대별 단계 조정 등은 ‘그날의 판매 전략’으로 이해합니다.\n\n연결된 타입 중 하나가 팔리면 다른 재고를 급히 닫아야 하는 경우가 있으므로 판매 직후 재고를 다시 확인합니다.", "id": "seed-020", "images": [], "archived": false, "changeNote": ""}, {"priority": "urgent", "category": "객실", "timing": "체크인 준비 전", "title": "추가인원 어메니티·침구는 체크인 전에 미리 세팅", "keywords": ["추가인원", "어메니티", "추가침구", "체크인"], "date": "2026-08-25", "source": "BKim·임영준", "content": "추가인원 비용을 이미 받은 객실은 어메니티와 추가 침구를 체크인 전에 미리 세팅합니다. 체크인 순간에 기억하고 뛰어가는 방식은 금지합니다.\n\n일일 업무시트에 추가인원/추침 수량을 바로 기록하고, 객실팀 청소시간에 미리 알려 함께 세팅합니다. 인원수가 4인 이상이거나 기준 인원 이상이면 추가 어메니티와 필요 침구를 반드시 재확인합니다.", "id": "seed-021", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "객실", "timing": "11:30 전후", "title": "퇴실 완료 후 11:30쯤 입실·추침 세팅 수량 다시 수정", "keywords": ["11시30분", "세팅수량", "추침", "업무시트"], "date": "2026-08-27", "source": "대표님", "content": "퇴실이 어느 정도 완료되는 11:30 전후에 당일 입실 세팅 수량을 한 번 더 수정합니다. 객실 변경·추가인원·추침 변화가 반영됐는지 확인하고 업무시트와 실제 세팅을 맞춥니다.", "id": "seed-022", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "인스펙", "timing": "12:30~14:30", "title": "12:30·13:00·13:30 청소 속도 체크 → 14:30 체크인 준비 판단", "keywords": ["청소속도", "인스펙", "2시30분", "프런트지원"], "date": "2026-08-18", "source": "대표님", "content": "12:30, 13:00, 13:30경 객실팀 청소 속도를 체크합니다. 객실팀이 인스펙까지 가능한지 먼저 판단하고, 어려우면 프런트팀이 1차 인스펙부터 붙어 14:30까지 체크인 준비가 끝나도록 선제적으로 움직입니다.", "id": "seed-023", "images": [], "archived": false, "changeNote": ""}, {"priority": "urgent", "category": "인스펙", "timing": "인스펙 중", "title": "욕실 하단 모서리·벽·천장까지 플래시로 보기", "keywords": ["곰팡이", "물때", "천장", "샤워부스", "플래시"], "date": "2026-09-08", "source": "BKim·임영준", "content": "인스펙 시 샤워부스 벽면, 변기실, 세면대 벽면, 욕조 내벽뿐 아니라 ‘하단 모서리·구석’의 물때와 곰팡이를 집중 확인합니다.\n\n지층 객실은 천장까지 반드시 확인합니다. 필요하면 휴대폰 플래시를 켜고 사진으로 남겨 객실창에 공유합니다.", "id": "seed-024", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "인스펙", "timing": "공실 판매 전", "title": "당일 판매 객실은 판매 전에 다시 인스펙 + 에어컨 가동", "keywords": ["당일판매", "재인스펙", "에어컨", "공실"], "date": "2026-08-31", "source": "대표님", "content": "오랫동안 공실이던 객실을 당일 판매할 때는 고객 입실 전에 한 번 더 직접 인스펙하고 에어컨을 가동해 객실 온도·습도·냄새 상태를 맞춥니다.", "id": "seed-025", "images": [], "archived": false, "changeNote": ""}, {"priority": "urgent", "category": "마감", "timing": "퇴근 전", "title": "공실 객실은 에어컨·조명 OFF + 제습기 물 비우기", "keywords": ["공실", "에어컨OFF", "조명OFF", "제습기"], "date": "2026-09-08", "source": "대표님", "content": "밤 10~11시 또는 퇴근 전까지 판매되지 않은 공실은 에어컨과 조명을 끄고, 제습기 물통을 비운 뒤 퇴근합니다.\n\n가능하면 에어컨 내부 습기 제거를 위해 송풍을 약 2시간 예약한 뒤 꺼지게 합니다. 다음날 인스펙 때 다시 정비하고, 판매 예정이면 냉방을 켭니다.", "id": "seed-026", "images": [], "archived": false, "changeNote": ""}, {"priority": "updated", "category": "체크인", "timing": "체크인 안내", "title": "여름 자쿠지 안내 최신판 — 기존 환기 POP 주지 않기", "keywords": ["자쿠지", "여름", "제습기", "체크인", "습도"], "date": "2026-09-07", "source": "대표님", "content": "여름 시즌에는 체크인 시 기존 자쿠지 환기 안내 POP를 전달하지 않습니다.\n\n창문 환기나 천정형 에어컨 제습을 강조하기보다 객실 내 ‘제습기’ 사용을 안내합니다. 족욕·자쿠지를 1시간 이상 사용할 경우 제습기를 가동하고 물통을 비워주면 더 쾌적하다고 설명합니다.", "changeNote": "8/21 체크인 공지의 ‘창문 환기/에어컨 제습’ 표현에서 9/7 ‘제습기 중심’ 안내로 변경되었습니다.", "id": "seed-027", "images": [], "archived": false}, {"priority": "updated", "category": "객실", "timing": "객실 준비", "title": "제습기 최신 배치 체크 — 203·303 필요 객실", "keywords": ["제습기", "203", "303", "습도", "배치"], "date": "2026-09-08", "source": "BKim·임영준", "content": "9/8 공유 기준 제습기 제공 객실: 101, 102, 201, 204, 205, 301, 304, 305.\n\n추가로 제습기가 필요한 객실: 203, 303. 설치·이동 후 실제 위치를 다시 공유하고, 물통 비움 상태도 확인합니다.\n\n※ 객실 구성이나 장비 수량이 바뀌면 최신 공유 내용을 우선합니다.", "id": "seed-028", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "체크인", "timing": "체크인 안내", "title": "체크인 추가 안내 — 모래 제거·신발 벗기·습도 관리", "keywords": ["해변", "모래", "신발", "외국인", "체크인"], "date": "2026-09-07", "source": "대표님", "content": "해변 이용 후 입실 시 모래를 충분히 제거하도록 안내합니다. 외국인 고객에게는 실내에서 신발을 벗는 이용 방식도 자연스럽게 안내합니다.\n\n욕조/자쿠지 객실의 습도 안내는 최신 여름 기준에 따라 ‘제습기 사용’ 중심으로 설명합니다.", "id": "seed-029", "images": [], "archived": false, "changeNote": ""}, {"priority": "reference", "category": "객실", "timing": "고객 문의 시", "title": "어린이 침대 안전가드 제공 가능", "keywords": ["침대가드", "어린이", "5층린넨실", "대여"], "date": "2026-09-04", "source": "대표님", "content": "평상형 침대 구조이지만 장박·외국인 고객 등 사전 문의가 있는 경우 어린이 침대 안전가드를 제공할 수 있다고 안내합니다.\n\n설치 이미지로 형태를 설명하고, 안전가드는 5층 린넨실 보관 상태를 확인합니다.", "id": "seed-030", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "객실", "timing": "연박 변경 시", "title": "딜리버리 → 룸터치 변경되면 ‘딜리버리’ 표기 삭제", "keywords": ["딜리버리", "룸터치", "연박", "표기"], "date": "2026-09-03", "source": "대표님", "content": "연박 정비 방식이 딜리버리에서 룸터치로 변경되면 기존 ‘딜리버리’ 표기를 반드시 삭제합니다. 두 지시가 동시에 남아 현장 직원이 잘못 처리하지 않게 합니다.", "id": "seed-031", "images": [], "archived": false, "changeNote": ""}, {"priority": "urgent", "category": "체크아웃", "timing": "퇴실 처리", "title": "객실키 반납 확인 없이 고객 보내지 않기", "keywords": ["객실키", "반납", "보증료", "퇴실"], "date": "2026-09-08", "source": "BKim·임영준", "content": "퇴실 시 객실키 반납 여부를 반드시 확인합니다. ‘방에 두고 왔다’는 말만 듣고 바로 보내지 않습니다.\n\n직접 가져오시게 하거나, 고객을 잠시 기다리게 하고 직원/객실팀이 확인하거나, 분실·미반납에 따른 보증료/분실요금을 처리한 뒤 퇴실을 완료합니다.\n\n업무폰 소지자는 카드키 분실 이슈도 함께 체크합니다.", "id": "seed-032", "images": [], "archived": false, "changeNote": ""}, {"priority": "urgent", "category": "레스토랑예약", "timing": "예약 접수 즉시", "title": "레스토랑 예약 접수 → 시트 기록 → 확정문자 즉시", "keywords": ["전화예약", "네이버", "캐치테이블", "확정문자", "예약시트"], "date": "2026-08-21", "source": "대표님", "content": "전화·네이버·캐치테이블 예약을 실시간 확인·승인합니다. 확인된 예약은 해당 날짜 레스토랑 예약 시트에 즉시 정확히 기록합니다.\n\n특히 전화예약은 조식 리스트 하단 비고/기록란에도 성함·인원·연락처·시간 등을 남깁니다. 기록과 승인이 끝나면 고객에게 예약 확정 문자를 바로 발송합니다.", "id": "seed-033", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "레스토랑예약", "timing": "10인 이상 예약", "title": "10인 이상은 메뉴 큰 틀부터 / 15~20인 이상은 주방과 즉시 협의", "keywords": ["단체예약", "10인이상", "20인이상", "주방협의", "예약금"], "date": "2026-08-21", "source": "대표님", "content": "10인 이상: 메인 요리류 중심인지, 전복밥·전복죽 같은 단품 식사류 중심인지 먼저 확인합니다. 세부 메뉴를 미리 정하면 당일 조리 시간을 줄일 수 있다고 안내합니다.\n\n15~20인 이상: 돌판비빔밥·밀면 등 화구 점유가 큰 메뉴는 주방과 조리 가능 시간/메뉴 조율을 즉시 상의합니다.\n\n단체·코스·메인 사전 예약은 노쇼 방지를 위한 예약금을 안내하고, 홀 전체 대관은 대관 비용을 사전 안내합니다.", "id": "seed-034", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "레스토랑예약", "timing": "D-1 / D-Day", "title": "단체 예약은 전날 확인문자 + 당일 오전 인사문자", "keywords": ["D-1", "D-Day", "확인문자", "단체"], "date": "2026-08-21", "source": "대표님", "content": "방문 하루 전 예약 내역과 최종 주문 메뉴를 재확인하는 문자를 발송합니다. 당일 출근 후 전날 문자가 정상 발송되었는지 체크하고, 당일 오전에도 ‘오늘 12시에 뵙겠습니다. 정성껏 준비하겠습니다’처럼 방문 시간과 인사를 담은 문자를 한 번 더 보냅니다.", "id": "seed-035", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "레스토랑예약", "timing": "단체 시간대", "title": "단체와 일반 예약·워크인 테이블 겹침 주의", "keywords": ["단체", "워크인", "룸3번", "홀테이블", "좌석"], "date": "2026-08-21", "source": "대표님", "content": "대규모 단체 방문 시간대에는 외부 예약·워크인 수용 범위를 미리 제한합니다. 대표 공지 기준으로 룸 3번과 홀 2~3개 테이블 정도만 일반 고객용으로 남기는 상황을 염두에 두고, 단체 시간과 일반 고객 시간이 겹치지 않게 예약을 받습니다.", "id": "seed-036", "images": [], "archived": false, "changeNote": ""}, {"priority": "updated", "category": "레스토랑", "timing": "주차 안내", "title": "레스토랑 주차 — 기본 1시간, 상황 따라 최대 2시간", "keywords": ["주차", "1시간", "2시간", "레스토랑"], "date": "2026-08-25", "source": "BKim·임영준", "content": "토유 레스토랑 주차 지원은 기본 1시간입니다. 주차장 여유 등 현장 상황에 따라 최대 2시간까지 지원할 수 있습니다.\n\n자리가 없거나 추가 주차가 어려운 경우 유료주차장 등 대안을 안내합니다.", "changeNote": "8/21 ‘1시간 무료’ 기준 이후 8/25 지배인 공지에서 ‘상황에 따라 2시간까지’가 추가되었습니다.", "id": "seed-037", "images": [], "archived": false}, {"priority": "important", "category": "레스토랑", "timing": "11시 오픈 전", "title": "직원 아침식사 후 테이블 닦기 + 창틀·테이블 컨디션 점검", "keywords": ["11시오픈", "창틀", "테이블청소", "직원식사"], "date": "2026-08-23", "source": "지배인님", "content": "조식조는 11시 레스토랑 오픈 전에 창틀과 테이블 청결 컨디션을 다시 점검합니다. 특히 직원 아침식사가 끝난 테이블은 반드시 닦고 손님을 맞습니다.", "id": "seed-038", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "레스토랑", "timing": "서빙 직전", "title": "테이블에 손대기 전에 먼저 한마디", "keywords": ["서빙매너", "실례합니다", "쟁반", "차", "빈그릇"], "date": "2026-08-24", "source": "대표님", "content": "차를 따르거나 쟁반을 놓거나 빈 그릇을 치우기 전에 고객에게 먼저 말을 건넵니다.\n\n예: ‘실례합니다’, ‘모닝티 준비해드리겠습니다’, ‘샐러드와 스프 준비해드리겠습니다’, ‘빈 그릇 정리해드리겠습니다.’\n\n작은 행동도 예고하고 진행하는 것이 토유의 서비스 매너 기준입니다.", "id": "seed-039", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "레스토랑", "timing": "주문 후", "title": "음식 지연 예상되면 주문 직후 먼저 양해 구하기", "keywords": ["음식지연", "양해", "주방", "대기"], "date": "2026-08-24", "source": "대표님", "content": "주방 상황상 음식이 늦어질 가능성이 보이면 고객이 오래 기다린 뒤 묻기 전에 주문을 받은 직후 예상 지연을 설명하고 먼저 양해를 구합니다.", "id": "seed-040", "images": [], "archived": false, "changeNote": ""}, {"priority": "urgent", "category": "CS", "timing": "메뉴 오류 발생 즉시", "title": "잘못 나온 메뉴 — 사과 → 해결안 → POS 오더까지 수정", "keywords": ["메뉴오류", "사과", "교체", "POS", "환불"], "date": "2026-08-24", "source": "대표님", "content": "메뉴가 잘못 나가면 가장 먼저 사과합니다. 부족한 수량을 추가 제공하거나, 정확한 메뉴로 교체할지 고객에게 선택지를 안내합니다. 그냥 드시겠다고 하면 상황에 따라 무료 음료 등 작은 서비스를 제공합니다.\n\n가장 중요한 마지막 단계: 실제 제공 메뉴에 맞게 POS 오더도 반드시 수정합니다. POS를 그대로 두면 잘못된 금액 결제·환불 이슈가 발생합니다.\n\n당황하거나 판단이 어려우면 즉시 지배인 또는 대표에게 연락합니다.", "id": "seed-041", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "레스토랑", "timing": "외국인 응대", "title": "외국인 비빔밥 — 고추장은 조금씩 넣어 맛보며 조절 안내", "keywords": ["비빔밥", "외국인", "고추장", "영어안내"], "date": "2026-08-24", "source": "대표님", "content": "비빔밥은 함께 제공된 고추장 소스를 넣고 잘 비벼 먹는 방법을 설명합니다. 소스가 과하게 맵지 않다고 안심시키되, 처음부터 전부 넣지 말고 조금씩 넣어 맛을 보며 양을 조절하도록 안내합니다.\n\nEN 핵심: Add a little chili sauce first, mix well, taste it, and add more to your liking.", "id": "seed-042", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "레스토랑", "timing": "외국인 응대", "title": "외국인 고객은 홀에서 더 세심하게 — 필요하면 80℃ 따뜻한 물", "keywords": ["외국인", "중국고객", "웜워터", "80도", "홀서비스"], "date": "2026-09-05", "source": "대표님", "content": "중식 시간에는 프런트에만 머물지 말고 레스토랑 홀도 오가며 외국인 고객의 요구를 세심하게 확인합니다.\n\n특히 중국권 고객에게 테이블 주전자가 아이스 물임을 알려주고, 따뜻한 물이 필요한지 물어봅니다. 원하면 약 80℃의 물을 컵에 준비해 쟁반에 받쳐 제공합니다.", "id": "seed-043", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "레스토랑", "timing": "고객 응대", "title": "어린이 고객에게도 존댓말 + 음료 캐리어 적극 제안", "keywords": ["어린이", "존댓말", "음료", "캐리어"], "date": "2026-08-31", "source": "대표님", "content": "어린이 고객에게도 존댓말을 사용합니다. 음료를 여러 잔 들고 가기 어렵거나 손이 부족한 고객에게는 비닐 캐리어에 담아드리겠다고 먼저 제안하고 위치·사용법을 직원들이 숙지합니다.", "id": "seed-044", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "레스토랑", "timing": "추천 메뉴 안내", "title": "현재 추천 판매 — Chef’s Pick 보약 2인세트 C", "keywords": ["쉐프추천", "보약세트C", "전복찜", "돌판비빔밥", "밀면"], "date": "2026-09-05", "source": "대표님", "content": "중식 고객 응대 시 Chef’s Pick / 인기 메뉴로 ‘전복 보약 2인세트 C’를 적극 추천합니다.\n\n구성: 전복찜 + 소·복 돌판비빔밥 + 부산 초계밀면. 대표 공지 가격은 90,000원으로 공유되었습니다.\n\n메뉴판에서는 ‘시그니처’ 타이틀을 전복찜 중심으로 사용하고, 단품 메뉴에 붙어 있던 과도한 ‘시그니처/NEW’ 표기는 정리하는 방향입니다.", "id": "seed-045", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "시설", "timing": "테이블 이동 시", "title": "식당 테이블은 밀지 말고 반드시 들어서 이동", "keywords": ["테이블", "바닥", "테이블발", "이동"], "date": "2026-09-08", "source": "대표님", "content": "식당 테이블을 이동할 때 밀거나 끌지 않습니다. 바닥이 상하고 테이블 발 부품이 약해 파손될 수 있으므로 두 사람이든 한 사람이든 들어서 옮깁니다.", "id": "seed-046", "images": [], "archived": false, "changeNote": ""}, {"priority": "updated", "category": "리뷰", "timing": "리뷰 요청 시", "title": "리뷰 요청 기준 변경 — 일본인도 요청 가능, 기준을 명확히 안내", "keywords": ["일본인", "리뷰", "별5개", "최근변경"], "date": "2026-09-05", "source": "대표님", "content": "8/29에는 일본인 고객에게 리뷰 요청을 자제하자는 공지가 있었으나, 9/5 테스트 결과 원하는 리뷰 기준을 명확히 부탁하면 일본 고객도 협조한다는 방향으로 다시 변경되었습니다.\n\n최신 운영상 리뷰 요청 자체는 가능하며, 어떤 플랫폼의 어떤 리뷰를 부탁드리는지 직원이 먼저 명확히 설명하고 링크 전달·작성 확인을 도와줍니다.", "changeNote": "8/29 ‘일본인 리뷰 요청 자제’ → 9/5 ‘명확히 부탁하면 리뷰 요청 가능’으로 변경.", "id": "seed-047", "images": [], "archived": false}, {"priority": "important", "category": "리뷰", "timing": "리뷰 이벤트", "title": "리뷰 링크 전달 + 사용 영수증 중복 방지 처리", "keywords": ["리뷰링크", "영수증", "중복리뷰", "블라인드"], "date": "2026-09-07", "source": "대표님", "content": "리뷰 이벤트 고객에게는 필요한 리뷰 링크를 직접 전달하고 작성 과정에서 플랫폼을 혼동하지 않게 안내합니다.\n\n네이버 리뷰에 사용한 영수증을 보관한다면 ‘사용 완료’ 메모를 남기거나 폐기합니다. 같은 영수증으로 중복 리뷰가 작성되면 블라인드 처리될 수 있습니다.", "id": "seed-048", "images": [], "archived": false, "changeNote": ""}, {"priority": "urgent", "category": "리뷰", "timing": "매일", "title": "OTA·리뷰 답변 놓치지 않기 — 응답률·응답시간도 평가됨", "keywords": ["리뷰답변", "에어비앤비", "응답률", "응답시간"], "date": "2026-09-02", "source": "대표님", "content": "에어비앤비 등 고객 문의/답변과 각 예약 사이트·구글·네이버 리뷰 답글을 놓치지 않습니다. 플랫폼에서는 응답률과 응답시간도 숙소 평가에 반영될 수 있으므로 확인 즉시 대응합니다.\n\n리뷰 답글은 상황에 맞게 3~5줄 정도로 간결하고 정중하게 작성합니다.", "id": "seed-049", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "CS", "timing": "클레임 마무리", "title": "토유 응급키트 — 클레임 후 ‘작은 배려’로 마무리", "keywords": ["응급키트", "클레임", "간식", "음료쿠폰", "선물"], "date": "2026-09-08", "source": "대표님", "content": "토유 응급키트는 클레임 처리 후 작은 선물을 드리거나, 특별한 리뷰 부탁 후 감사 선물로 활용하는 개념입니다.\n\n객실 상황에 따라 간식, 음료쿠폰, 핑크솔트, 스팀안대 등을 조합하고 특별 이슈에는 음료나 맥주 등 추가 배려를 판단합니다. ‘그냥 퍼주기’보다 문제 해결 후 살뜰히 챙기는 느낌이 중요합니다.", "id": "seed-050", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "CS", "timing": "고객 마주칠 때", "title": "체크인 후에도 먼저 챙김 멘트 — 수건·물·음료 한 번 더", "keywords": ["고객경험", "챙김멘트", "수건", "물", "음료"], "date": "2026-09-05", "source": "대표님", "content": "체크인 때만 친절하고 끝내지 않습니다. 복도나 프런트에서 고객을 다시 마주치면 ‘수건이나 물 더 필요하신 건 없으세요?’, ‘음료 한 잔 더 대접해드릴까요?’처럼 작은 필요를 먼저 물어봅니다.\n\n무료 제공은 ‘막 퍼주는’ 느낌보다 특별히 살뜰히 챙겨드리는 인상으로 전달합니다.", "id": "seed-051", "images": [], "archived": false, "changeNote": ""}, {"priority": "urgent", "category": "안전", "timing": "경보 발생 시", "title": "화재경보는 최신 부착 매뉴얼 우선 — 확인·연락·대피 판단", "keywords": ["화재경보", "수신기", "소방", "대피", "안전"], "date": "2026-08-26", "source": "대표님", "content": "백오피스 수신기 옆에 소방 담당 연락처와 경보 대응 순서가 보이도록 유지하고, 신입 직원도 위치와 절차를 숙지합니다.\n\n경보 발생 시 부착된 최신 현장 매뉴얼에 따라 빠르게 상황을 확인하고 각 층의 연기·냄새·실제 화재 여부를 확인합니다. 실제 화재가 의심되면 즉시 대피와 소방 대응이 우선입니다.\n\n※ 경보장치 조작은 임의로 판단하지 말고 현재 시설 안전 매뉴얼과 책임자 지시에 따릅니다.", "id": "seed-052", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "안전", "timing": "야간·주말", "title": "복도에 큰 소음이 들리면 민원 전에도 직접 안내", "keywords": ["소음", "야간", "객실", "민원"], "date": "2026-09-05", "source": "대표님", "content": "주말 등 객실에서 큰 대화·아이들 소리로 복도까지 울릴 정도라면 다른 객실의 민원이 들어오기 전이라도 직접 해당 객실을 방문합니다.\n\n노크 후 ‘주변 객실에서 소음 관련 불편이 있을 수 있어 죄송하지만 조금만 조용히 부탁드린다’는 식으로 정중하게 요청합니다.", "id": "seed-053", "images": [], "archived": false, "changeNote": ""}, {"priority": "reference", "category": "고객편의", "timing": "고객 문의 시", "title": "유모차는 현관 입구 파킹이 기본", "keywords": ["유모차", "현관", "식당", "객실"], "date": "2026-08-23", "source": "대표님", "content": "고객 유모차는 현관 입구에 주차하도록 안내하고 식당 안이나 객실 앞까지 이동하지 않도록 합니다.\n\n예외: 유모차 안에 아기가 자고 있거나 애착 유모차 등 특별한 사정이 있는 경우 현장 상황에 맞춰 배려합니다.", "id": "seed-054", "images": [], "archived": false, "changeNote": ""}, {"priority": "reference", "category": "고객편의", "timing": "고객 문의 시", "title": "전자레인지 요청 시 프런트 옆 기기 직접 사용 가능", "keywords": ["전자레인지", "프런트", "고객사용"], "date": "2026-08-23", "source": "대표님", "content": "고객이 전자레인지 사용을 요청하면 프런트 옆 전자레인지를 직접 사용하셔도 된다고 안내할 수 있습니다. 야간 POP에는 안전상 직원에게 요청하라고 적혀 있으므로 문의가 들어오면 위치와 사용을 안내합니다.", "id": "seed-055", "images": [], "archived": false, "changeNote": ""}, {"priority": "reference", "category": "고객편의", "timing": "세탁 문의 시", "title": "고객 세탁 문의 — 크린토피아로 직접 연결", "keywords": ["세탁서비스", "크린토피아", "고객문의"], "date": "2026-08-26", "source": "BKim·임영준", "content": "고객 세탁 문의 시 지정된 크린토피아 업체로 직접 연결하는 방식으로 안내합니다. 업체 연락처와 안내 POP의 최신 버전을 프런트에서 확인할 수 있게 유지합니다.\n\n※ 전화번호 등 업체 정보가 바뀔 수 있으므로 실제 안내 전 현재 POP를 다시 확인합니다.", "id": "seed-056", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "마감", "timing": "휴게·자리비움", "title": "자리 비울 때 백오피스 문 닫기 + 연락처 POP 이동", "keywords": ["백오피스", "연락처POP", "휴게", "자리비움"], "date": "2026-08-30", "source": "대표님", "content": "휴게나 다른 업무로 프런트를 비울 때 백오피스 문은 반드시 닫습니다. 직원이 안 보이면 고객이 백오피스를 들여다보거나 들어올 수 있습니다.\n\n마감조가 휴게 갈 때는 연락처 POP를 키박스/레지카드 작성 위치에 두어 고객이 전화로 문의할 수 있게 합니다. 휴게 중 고객 응대를 했다면 그 응대 시간만큼 추가 휴게를 챙깁니다.", "id": "seed-057", "images": [], "archived": false, "changeNote": ""}, {"priority": "reference", "category": "시설", "timing": "장비 오류 시", "title": "테이블 오더기 오류 — 배터리 분리 → 완전 OFF → 재부팅", "keywords": ["오더기", "배터리", "재부팅", "오류"], "date": "2026-08-30", "source": "BKim·임영준", "content": "식당 테이블 오더기가 반응하지 않을 때 배터리를 분리하고 전원을 완전히 끈 뒤 다시 켜는 방식으로 정상 작동을 확인합니다. 단순 배터리 교체만으로 해결되지 않을 때 첫 점검 절차로 사용합니다.", "id": "seed-058", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "시설", "timing": "장비 사용 시", "title": "주방 POS 전원·콘센트 임의 분리 금지", "keywords": ["POS", "콘센트", "충전", "전원"], "date": "2026-08-24", "source": "대표님", "content": "주방 POS가 작동하지 않는 원인이 전원 연결 분리였던 사례가 있습니다. 휴대폰 충전 등 개인 장비가 필요할 때 POS 관련 플러그를 빼지 말고 비어 있는 다른 콘센트를 사용합니다.", "id": "seed-059", "images": [], "archived": false, "changeNote": ""}, {"priority": "reference", "category": "시설", "timing": "비품 필요 시", "title": "객실용 할로겐 위치 — 어메니티 서랍장 중간 맨 아래", "keywords": ["할로겐", "어메니티서랍", "전구"], "date": "2026-08-30", "source": "지배인님", "content": "객실용 할로겐은 어메니티 서랍장 중간 칸의 맨 아래 서랍에 보관합니다. 교체 후 남은 재고도 같은 위치로 돌려놓습니다.", "id": "seed-060", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "시설", "timing": "설치 시", "title": "냉장고는 뒤 벽에 붙이지 말고 환기 공간 확보", "keywords": ["냉장고", "환기", "설치"], "date": "2026-08-31", "source": "지배인님", "content": "냉장고는 뒤쪽 벽에 바짝 붙이지 말고 최대한 앞쪽으로 위치를 조정해 후면 환기 공간을 확보합니다.", "id": "seed-061", "images": [], "archived": false, "changeNote": ""}, {"priority": "important", "category": "마감", "timing": "마감", "title": "백오피스 청소기 먼지필터 비우기 업무에 포함", "keywords": ["청소기", "먼지필터", "마감", "백오피스"], "date": "2026-09-08", "source": "대표님", "content": "백오피스 청소기들의 먼지필터를 비우는 항목을 업무 리스트에 포함해 주기적으로 처리합니다.", "id": "seed-062", "images": [], "archived": false, "changeNote": ""}, {"priority": "reference", "category": "시설", "timing": "고객 문의 시", "title": "바닥 난방 조절기는 에어컨 조절기가 아님", "keywords": ["난방", "온돌", "Flow Heating Control", "에어컨"], "date": "2026-08-21", "source": "대표님", "content": "객실 바닥 난방 조절기는 에어컨 조절기가 아닙니다. 안내 스티커 문구는 ‘Flow Heating Control [Not A/C Control]’ 취지로 이해하고 고객 문의 시 구분해서 설명합니다.", "id": "seed-063", "images": [], "archived": false, "changeNote": ""}, {"priority": "reference", "category": "프런트", "timing": "재고 확인", "title": "딜리버리 봉투 종류별 위치·재고 상시 파악", "keywords": ["딜리버리봉투", "수건", "생수", "맥주", "테이크아웃"], "date": "2026-08-21", "source": "대표님", "content": "프런트 딜리버리용 봉투는 큰 사이즈(수건·생수), 중간 사이즈, 맥주 2캔 미니봉투, 테이크아웃 컵 캐리어 봉투, 간식 선물봉투, 간식 바구니 등 용도별 위치와 재고를 상시 파악합니다. 맥주 미니봉투와 테이크아웃 컵 캐리어 봉투는 정수기 아래 위치로 공유되었습니다.", "id": "seed-064", "images": [], "archived": false, "changeNote": ""}, {"priority": "reference", "category": "브랜드", "timing": "고객 질문 시", "title": "‘TOYU’ 의미를 물으면 — 따뜻함이 모이는 곳", "keywords": ["TOYU", "브랜드스토리", "따뜻함", "To You"], "date": "2026-08-21", "source": "대표님", "content": "고객이 TOYU의 의미를 물으면 망설이지 말고 짧게 설명합니다.\n\n핵심 표현: ‘따뜻함이 모이는 곳’, ‘좋은 사람들이 함께 모여 더 따뜻해지는 곳.’\n\n브랜드 스토리는 ‘따뜻한 온기가 있는 곳으로 사람들이 모여들어 서로의 마음을 나누고, 당신(To You)을 위한 진정한 휴식을 완성하는 공간’이라는 방향입니다.", "id": "seed-065", "images": [], "archived": false, "changeNote": ""}];
+const STORAGE='toyu_notice_night_v1';
+const READKEY='toyu_notice_night_read_v1';
+const PERSONALKEY='toyu_notice_night_personal_v1';
+const STAFFKEY='toyu_notice_night_staff_v1';
+
+let notices=loadNotices();
+let activePriority='all',activeCategory='all';
+let heartOnly=false,memoOnly=false,unreadOnly=false,readOnly=false,tempImages=[];
+let currentStaff=localStorage.getItem(STAFFKEY)||'선영';
+let reminderId=null;
+
+const rank={urgent:0,updated:1,important:2,reference:3};
+const labels={urgent:'먼저 보기',updated:'최근 변경',important:'중요',reference:'참고'};
+const cats=['공통','오픈','조식','음료','프런트','체크인','체크아웃','객실','인스펙','예약','가격·재고','레스토랑예약','레스토랑','리뷰','CS','안전','고객편의','시설','마감','브랜드'];
+const catEmoji={'조식':'☕','음료':'🥤','레스토랑':'🍽️','레스토랑예약':'📒','객실':'🛏️','인스펙':'🔎','시설':'🫧','프런트':'🛎️','체크인':'🗝️','체크아웃':'👜','예약':'📅','가격·재고':'🗂️','리뷰':'💬','고객편의':'🌿','브랜드':'✦','안전':'☁️','CS':'🤍','공통':'🌙','오픈':'🌤️','마감':'🌃'};
+const emojiChoices=['🌙','☁️','⭐','✨','✦','🌃','🌆','🌌','🫧','🌿','🍃','🌱','🌼','🌸','🪻','🕊️','🤍','💜','🩵','💫','🛎️','🗝️','🛏️','☕','🫖','🥤','🍽️','📒','📌','🔎'];
+
+function day(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function stripHtml(s=''){const d=document.createElement('div');d.innerHTML=s;return d.textContent||d.innerText||''}
+function sourceRole(s=''){return String(s).replace(/BKim/g,'대표님').replace(/임영준/g,'지배인님').replace(/\s*·\s*/g,' · ').trim()}
+function normalizeNotice(n){
+  return {
+    ...n,
+    titleStyle:{
+      font:n.titleStyle?.font||'gothic',
+      weight:n.titleStyle?.weight||'700',
+      size:n.titleStyle?.size||'19',
+      color:n.titleStyle?.color||'#4C5263',
+      accent:n.titleStyle?.accent||'none'
+    },
+    cardTone:n.cardTone||'auto',
+    sticker:n.sticker||'',
+    imageLayout:n.imageLayout||'wide',
+    contentHtml:n.contentHtml||esc(n.content||'').replace(/\n/g,'<br>'),
+    images:n.images||[]
+  };
+}
+
+function isNewNotice(n){
+  if(!n?.date)return false;
+  const d=new Date(n.date+'T00:00:00');
+  if(isNaN(d))return false;
+  const now=new Date();
+  const diff=(now-d)/(1000*60*60*24);
+  return diff>=0 && diff<7;
+}
+function updateClock(){
+  const el=document.getElementById('liveClock');
+  if(!el)return;
+  const d=new Date();
+  const days=['일','월','화','수','목','금','토'];
+  const text=`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} (${days[d.getDay()]}) · ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+  el.innerHTML=`<b>현재 기준</b><span>${text}</span>`;
+}
+function renderEmojiLibrary(){
+  const box=document.getElementById('emojiLibrary');
+  if(!box)return;
+  box.innerHTML=emojiChoices.map(e=>`<button type="button" class="emoji-choice ${sticker.value===e?'selected':''}" data-emoji="${e}">${e}</button>`).join('');
+  selectedEmoji.textContent=sticker.value||'없음';
+}
+
+function loadNotices(){
+  try{
+    const x=localStorage.getItem(STORAGE);
+    const arr=x?JSON.parse(x):JSON.parse(JSON.stringify(SEED));
+    return arr.map(normalizeNotice);
+  }catch(e){return JSON.parse(JSON.stringify(SEED)).map(normalizeNotice)}
+}
+function saveNotices(){localStorage.setItem(STORAGE,JSON.stringify(notices));render()}
+function readMap(){try{return JSON.parse(localStorage.getItem(READKEY)||'{}')}catch(e){return {}}}
+function readEntry(id){const m=readMap(),d=day();return m[currentStaff]?.[d]?.[id]||null}
+function isRead(id){return !!readEntry(id)}
+function readTime(id){
+  const v=readEntry(id);if(!v)return '';
+  try{const dt=new Date(v);return `오늘 읽음 · ${String(dt.getHours()).padStart(2,'0')}:${String(dt.getMinutes()).padStart(2,'0')}`}catch(e){return '오늘 읽음'}
+}
+function setRead(id,v){
+  const m=readMap(),d=day();m[currentStaff]=m[currentStaff]||{};m[currentStaff][d]=m[currentStaff][d]||{};
+  if(v)m[currentStaff][d][id]=new Date().toISOString();else delete m[currentStaff][d][id];
+  localStorage.setItem(READKEY,JSON.stringify(m))
+}
+function personalData(){try{return JSON.parse(localStorage.getItem(PERSONALKEY)||'{}')}catch(e){return {}}}
+function personal(id){const d=personalData();return d[currentStaff]?.[id]||{heart:false,memo:''}}
+function updatePersonal(id,patch){
+  const d=personalData();d[currentStaff]=d[currentStaff]||{};
+  d[currentStaff][id]={heart:false,memo:'',...(d[currentStaff][id]||{}),...patch};
+  localStorage.setItem(PERSONALKEY,JSON.stringify(d))
+}
+function toggleHeart(id){const p=personal(id);updatePersonal(id,{heart:!p.heart});render()}
+function saveMemo(id){
+  const el=document.getElementById('personalMemo');if(!el)return;
+  updatePersonal(id,{memo:el.value.trim()});render();
+  const b=document.getElementById('memoSaveBtn');if(b){b.textContent='저장됨 ✓';setTimeout(()=>b.textContent='메모 저장',1000)}
+}
+function firstSentence(t=''){
+  const x=stripHtml(t).replace(/\n+/g,' ').trim();
+  return (x.split(/(?<=[.!?。])\s+/)[0]||x).slice(0,155)
+}
+function emphasizeExcerpt(t=''){
+  let x=esc(firstSentence(t));
+  const words=['반드시','꼭','금지','불가','원칙','주의','체크','최신','미리','즉시'];
+  let hit=false;
+  words.forEach(w=>{if(!hit&&x.includes(w)){x=x.replace(w,`<mark>${w}</mark>`);hit=true}});
+  if(!hit){const m=x.match(/\d{1,2}시(?:\s*\d{1,2}분)?|\d{1,2}:\d{2}|[0-9]+인|[0-9]+개/);if(m)x=x.replace(m[0],`<u>${m[0]}</u>`)}
+  const first=x.split(' ').slice(0,3).join(' ');if(first)x=x.replace(first,`<strong>${first}</strong>`);
+  return x
+}
+function sanitizeRich(html){
+  const tpl=document.createElement('template');tpl.innerHTML=html;
+  const allowed=new Set(['B','STRONG','U','MARK','BR','DIV','P','SPAN']);
+  const walk=node=>{
+    [...node.childNodes].forEach(ch=>{
+      if(ch.nodeType===1){
+        if(!allowed.has(ch.tagName)){
+          ch.replaceWith(...ch.childNodes);return
+        }
+        [...ch.attributes].forEach(a=>{
+          if(a.name!=='class')ch.removeAttribute(a.name)
+        });
+        if(ch.className && ch.className!=='gowun')ch.removeAttribute('class');
+        walk(ch)
+      }
+    })
+  };
+  walk(tpl.content);return tpl.innerHTML
+}
+function buildCats(){
+  const counts={};notices.forEach(n=>counts[n.category]=(counts[n.category]||0)+1);
+  categoryChips.innerHTML=`<button class="chip ${activeCategory==='all'?'active':''}" data-cat="all">업무 전체</button>`+
+    cats.filter(c=>counts[c]).map(c=>`<button class="chip ${activeCategory===c?'active':''}" data-cat="${c}">${catEmoji[c]||''} ${c} ${counts[c]}</button>`).join('')
+}
+function filtered(){
+  const q=searchInput.value.trim().toLowerCase(),timing=timingSelect.value;
+  let a=notices.filter(n=>!n.archived);
+  if(activePriority!=='all')a=a.filter(n=>n.priority===activePriority);
+  if(activeCategory!=='all')a=a.filter(n=>n.category===activeCategory);
+  if(timing!=='all')a=a.filter(n=>n.timing===timing);
+  if(heartOnly)a=a.filter(n=>personal(n.id).heart);
+  if(memoOnly)a=a.filter(n=>personal(n.id).memo);
+  if(unreadOnly)a=a.filter(n=>!isRead(n.id));
+  if(readOnly)a=a.filter(n=>isRead(n.id));
+  if(q)a=a.filter(n=>[n.title,stripHtml(n.contentHtml||n.content),n.category,n.timing,n.source,n.changeNote,...(n.keywords||[])].join(' ').toLowerCase().includes(q));
+  const sort=sortSelect.value;
+  a.sort((x,y)=>sort==='newest'?y.date.localeCompare(x.date):sort==='oldest'?x.date.localeCompare(y.date):(rank[x.priority]-rank[y.priority]||y.date.localeCompare(x.date)));
+  return a
+}
+function updateReminder(){
+  const candidates=notices.filter(n=>!n.archived&&(n.priority==='urgent'||n.priority==='updated')&&!isRead(n.id));
+  const fallback=notices.filter(n=>!n.archived&&!isRead(n.id));
+  const n=candidates[0]||fallback[0]||notices.find(n=>!n.archived);reminderId=n?.id||null;
+  if(!n){reminderTitle.textContent='오늘은 모두 확인했어요 🌙';reminderText.textContent='필요한 순간에 다시 찾아보면 됩니다.';reminderOpenBtn.disabled=true;return}
+  reminderOpenBtn.disabled=false;
+  reminderTitle.textContent=(n.sticker||catEmoji[n.category]||'✦')+' '+n.title;
+  reminderText.textContent=`${n.category} · ${n.timing||'필요 시'} · 아직 읽지 않은 공지`
+}
+function render(){
+  buildCats();updateReminder();
+  const a=filtered();resultCount.textContent=a.length+'건';
+  grid.innerHTML=a.length?a.map(n=>{
+    const p=personal(n.id),ts=n.titleStyle||{},tone=n.cardTone&&n.cardTone!=='auto'?` custom-tone-${n.cardTone}`:'';
+    const imgs=n.images||[],layout=n.imageLayout||'wide';
+    const img=imgs.length?`<div class="card-image wide"><img src="${imgs[0]}" alt="공지 대표사진"></div>`:'';
+    return `<article class="card ${isRead(n.id)?'is-read':''} ${isNewNotice(n)?'is-new':''}${tone} ${imgs.length?'has-image':''}" data-cat="${esc(n.category)}" onclick="openDetail('${n.id}')">
+      ${img}
+      <div class="card-top">
+        <div class="badges"><span class="badge">${labels[n.priority]}</span><span class="badge cat">${catEmoji[n.category]||''} ${esc(n.category)}</span>${n.changeNote?'<span class="badge">↻ 변경</span>':''}</div>
+        <div class="source">${esc(sourceRole(n.source||''))}<br>${esc(n.date||'')}</div>
+      </div>
+      <h3 class="card-title title-font-${ts.font||'gothic'} title-accent-${ts.accent||'none'}" style="font-weight:${ts.weight||700};font-size:${ts.size||19}px;color:${esc(ts.color||'#4C5263')}">${esc(n.title)}</h3>
+      <div class="tags">${(n.keywords||[]).slice(0,4).map(k=>`<span class="tag">#${esc(k)}</span>`).join('')}</div>
+      <div class="key-excerpt">${emphasizeExcerpt(n.contentHtml||n.content||'')}</div>
+      ${n.sticker?`<div class="card-sticker">${esc(n.sticker)}</div>`:''}
+      <div class="card-foot">
+        <div class="timing">${isRead(n.id)?`<span class="read-time">${esc(readTime(n.id))}</span>`:'○ 아직 안 읽음'}<br>${esc(n.timing||'필요 시')}</div>
+        <div class="personal-tools" onclick="event.stopPropagation()">
+          <button class="icon-btn ${p.heart?'hearted':''}" onclick="toggleHeart('${n.id}')">${p.heart?'♥':'♡'}</button>
+          <button class="icon-btn ${p.memo?'noted':''}" onclick="openDetail('${n.id}')">✎</button>
+        </div>
+      </div>
+    </article>`
+  }).join(''):'<div class="empty">조건에 맞는 공지가 없어요 🌙</div>';
+
+  const active=notices.filter(n=>!n.archived),must=active.filter(n=>n.priority==='urgent'||n.priority==='updated'),done=must.filter(n=>isRead(n.id)).length;
+  urgentCount.textContent=active.filter(n=>n.priority==='urgent').length;
+  updatedCount.textContent=active.filter(n=>n.priority==='updated').length;
+  totalCount.textContent=active.length;
+  todayText.textContent=`${done} / ${must.length} 확인`;
+  progressBar.style.width=(must.length?done/must.length*100:100)+'%';
+  heartOnlyBtn.classList.toggle('active',heartOnly);memoOnlyBtn.classList.toggle('active',memoOnly);
+  unreadOnlyBtn.classList.toggle('active',unreadOnly);readOnlyBtn.classList.toggle('active',readOnly)
+}
+function openDetail(id){
+  const n=notices.find(x=>x.id===id);if(!n)return;
+  const p=personal(id),imgs=n.images||[];
+  detailBody.innerHTML=`
+    <div class="badges"><span class="badge">${labels[n.priority]}</span><span class="badge cat">${catEmoji[n.category]||''} ${esc(n.category)}</span><span class="badge">${esc(n.timing||'필요 시')}</span></div>
+    <h3 class="detail-title">${esc(n.title)}</h3>
+    <div class="detail-meta">출처 ${esc(sourceRole(n.source||'-'))} · 최근 공지 ${esc(n.date||'-')}</div>
+    <div class="tags" style="margin-top:10px">${(n.keywords||[]).map(k=>`<span class="tag">#${esc(k)}</span>`).join('')}</div>
+    ${n.changeNote?`<div class="change-note"><b>☁️ 최근 변경 메모</b><br>${esc(n.changeNote)}</div>`:''}
+    <div class="detail-content rich-content">${sanitizeRich(n.contentHtml||esc(n.content||'').replace(/\n/g,'<br>'))}</div>
+    ${imgs.length?`<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:15px">${imgs.map(x=>`<img src="${x}" style="width:100%;border-radius:10px;border:1px solid #DDE1E8">`).join('')}</div>`:''}
+    <div class="personal-panel">
+      <div class="personal-head"><b>🌙 ${esc(currentStaff)}님의 개인 표시</b><button class="heart-large ${p.heart?'on':''}" onclick="updatePersonal('${id}',{heart:${!p.heart}});openDetail('${id}');render()">${p.heart?'♥ 중요 공지':'♡ 중요 표시'}</button></div>
+      <textarea id="personalMemo" class="memo" placeholder="${esc(currentStaff)}님만 보는 메모를 적어두세요.">${esc(p.memo||'')}</textarea>
+      <div class="modal-actions" style="margin-top:8px"><button id="memoSaveBtn" class="btn" onclick="saveMemo('${id}')">메모 저장</button></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn ${isRead(id)?'':'mint'}" onclick="setRead('${id}',${!isRead(id)});render();openDetail('${id}')">${isRead(id)?'읽음 표시 취소':'✓ 읽었어요'}</button>
+      <button class="btn" onclick="closeD('detailDialog');openEdit('${id}')">꾸미기/수정</button>
+      <button class="btn danger" onclick="deleteNotice('${id}')">삭제</button>
+    </div>`;
+  if(!detailDialog.open)detailDialog.showModal()
+}
+function closeD(id){const d=document.getElementById(id);if(d.open)d.close()}
+function openEdit(id=null){
+  noticeForm.reset();tempImages=[];nid.value='';date.value=day();editTitle.textContent='새 공지 꾸미기 ✦';
+  const defaults={font:'gothic',weight:'700',size:'19',color:'#4C5263',accent:'none'};
+  if(id){
+    const n=notices.find(x=>x.id===id);if(!n)return;
+    priority.value=n.priority;category.value=n.category;timing.value=n.timing||'';source.value=sourceRole(n.source||'');
+    title.value=n.title;keywords.value=(n.keywords||[]).join(', ');date.value=n.date;changeNote.value=n.changeNote||'';
+    const ts=n.titleStyle||defaults;
+    cardTone.value=n.cardTone||'auto';sticker.value=n.sticker||'';titleFont.value=ts.font||'gothic';
+    titleWeight.value=ts.weight||'700';titleSize.value=ts.size||'19';titleColor.value=ts.color||'#4C5263';
+    titleAccent.value=ts.accent||'none';imageLayout.value=n.imageLayout||'wide';
+    contentEditor.innerHTML=sanitizeRich(n.contentHtml||esc(n.content||'').replace(/\n/g,'<br>'));
+    nid.value=n.id;tempImages=[...(n.images||[])];editTitle.textContent='공지 꾸미기 / 수정 ✦'
+  }else{
+    cardTone.value='auto';sticker.value='';titleFont.value='gothic';titleWeight.value='700';titleSize.value='19';
+    titleColor.value='#4C5263';titleAccent.value='none';imageLayout.value='wide';contentEditor.innerHTML=''
+  }
+  imagePreview();renderEmojiLibrary();if(!editDialog.open)editDialog.showModal()
+}
+function imagePreview(){
+  imgprev.innerHTML=tempImages.map((x,i)=>`<div class="imgbox"><img src="${x}"><button type="button" onclick="tempImages.splice(${i},1);imagePreview()">×</button></div>`).join('')
+}
+function compress(file){
+  return new Promise((resolve,reject)=>{
+    const r=new FileReader();
+    r.onload=()=>{const im=new Image();im.onload=()=>{let w=im.width,h=im.height,max=1400;if(Math.max(w,h)>max){const q=max/Math.max(w,h);w=Math.round(w*q);h=Math.round(h*q)}
+      const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(im,0,0,w,h);resolve(c.toDataURL('image/jpeg',.78))
+    };im.onerror=reject;im.src=r.result};r.onerror=reject;r.readAsDataURL(file)
+  })
+}
+function deleteNotice(id){if(!confirm('이 공지를 삭제할까요?'))return;notices=notices.filter(n=>n.id!==id);closeD('detailDialog');saveNotices()}
+function exec(cmd,val=null){contentEditor.focus();document.execCommand(cmd,false,val)}
+function wrapGowun(){
+  const sel=window.getSelection();if(!sel.rangeCount||sel.isCollapsed)return;
+  const r=sel.getRangeAt(0),span=document.createElement('span');span.className='gowun';
+  try{r.surroundContents(span)}catch(e){span.appendChild(r.extractContents());r.insertNode(span)}
+}
+function unwrapGowun(){
+  const sel=window.getSelection();if(!sel.rangeCount)return;
+  let n=sel.anchorNode;n=n?.nodeType===3?n.parentNode:n;
+  while(n&&n!==contentEditor&&!n.classList?.contains('gowun'))n=n.parentNode;
+  if(n&&n.classList?.contains('gowun'))n.replaceWith(...n.childNodes)
+}
+function highlightSelection(){
+  const sel=window.getSelection();if(!sel.rangeCount||sel.isCollapsed)return;
+  const r=sel.getRangeAt(0),m=document.createElement('mark');
+  try{r.surroundContents(m)}catch(e){m.appendChild(r.extractContents());r.insertNode(m)}
+}
+
+emojiLibrary.addEventListener('click',e=>{
+  const b=e.target.closest('.emoji-choice');if(!b)return;
+  sticker.value=b.dataset.emoji||'';
+  renderEmojiLibrary();
+});
+staffSelect.value=currentStaff;
+staffSelect.addEventListener('change',()=>{currentStaff=staffSelect.value;localStorage.setItem(STAFFKEY,currentStaff);render()});
+heartOnlyBtn.addEventListener('click',()=>{heartOnly=!heartOnly;render()});
+memoOnlyBtn.addEventListener('click',()=>{memoOnly=!memoOnly;render()});
+unreadOnlyBtn.addEventListener('click',()=>{unreadOnly=!unreadOnly;if(unreadOnly)readOnly=false;render()});
+readOnlyBtn.addEventListener('click',()=>{readOnly=!readOnly;if(readOnly)unreadOnly=false;render()});
+priorityChips.addEventListener('click',e=>{
+  const b=e.target.closest('[data-priority]');if(!b)return;activePriority=b.dataset.priority;
+  document.querySelectorAll('#priorityChips [data-priority]').forEach(x=>x.classList.toggle('active',x===b));render()
+});
+categoryChips.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;activeCategory=b.dataset.cat;render()});
+searchInput.addEventListener('input',render);sortSelect.addEventListener('change',render);timingSelect.addEventListener('change',render);
+reminderOpenBtn.addEventListener('click',()=>{if(reminderId)openDetail(reminderId)});
+addBtn.addEventListener('click',()=>openEdit());
+markAllBtn.addEventListener('click',()=>{notices.filter(n=>n.priority==='urgent'||n.priority==='updated').forEach(n=>setRead(n.id,true));render()});
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeD(b.dataset.close)));
+document.querySelectorAll('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d)d.close()}));
+document.querySelectorAll('.rich-btn[data-cmd]').forEach(b=>b.addEventListener('click',()=>exec(b.dataset.cmd)));
+highlightBtn.addEventListener('click',highlightSelection);
+gowunBtn.addEventListener('click',wrapGowun);
+gothicBtn.addEventListener('click',unwrapGowun);
+clearFormatBtn.addEventListener('click',()=>exec('removeFormat'));
+imageInput.addEventListener('change',async e=>{
+  for(const f of [...e.target.files].slice(0,8)){try{tempImages.push(await compress(f))}catch(_){}}imagePreview();e.target.value=''
+});
+noticeForm.addEventListener('submit',e=>{
+  e.preventDefault();
+  const id=nid.value||('user-'+Date.now());
+  const safeHtml=sanitizeRich(contentEditor.innerHTML);
+  const n={
+    id,priority:priority.value,category:category.value,timing:timing.value.trim()||'필요 시',
+    source:sourceRole(source.value.trim()||'직접 입력'),title:title.value.trim(),
+    keywords:keywords.value.split(',').map(x=>x.trim().replace(/^#/,'')).filter(Boolean),
+    date:date.value,content:stripHtml(safeHtml),contentHtml:safeHtml,changeNote:changeNote.value.trim(),
+    images:[...tempImages],archived:false,cardTone:cardTone.value,sticker:sticker.value.trim(),
+    imageLayout:imageLayout.value,
+    titleStyle:{font:titleFont.value,weight:titleWeight.value,size:titleSize.value,color:titleColor.value,accent:titleAccent.value}
+  };
+  const i=notices.findIndex(x=>x.id===id);if(i>=0)notices[i]=n;else notices.unshift(n);
+  closeD('editDialog');saveNotices()
+});
+exportBtn.addEventListener('click',()=>{
+  const blob=new Blob([JSON.stringify({version:3,notices,personal:personalData(),reads:readMap()},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='TOYU_NIGHT_NOTICE_'+day()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)
+});
+importFile.addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{
+    const d=JSON.parse(r.result);if(!Array.isArray(d.notices))throw Error();
+    if(confirm('백업 내용으로 현재 공지를 교체할까요?')){
+      notices=d.notices.map(normalizeNotice);localStorage.setItem(STORAGE,JSON.stringify(notices));
+      if(d.personal)localStorage.setItem(PERSONALKEY,JSON.stringify(d.personal));
+      if(d.reads)localStorage.setItem(READKEY,JSON.stringify(d.reads));render()
+    }
+  }catch(_){alert('올바른 백업 파일이 아닙니다.')}};r.readAsText(f);e.target.value=''
+});
+updateClock();
+setInterval(updateClock,30000);
+render();
+</script>
+</body>
+</html>
